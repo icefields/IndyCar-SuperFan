@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="?attr/colorSurface"
+        android:endColor="?attr/colorSurface"/>
+    <corners
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="@dimen/list_item_container_card_radius"
+        android:topRightRadius="@dimen/list_item_container_card_radius" />
+</shape>

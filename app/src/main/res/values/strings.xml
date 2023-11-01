@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Indycar SuperFan</string>
+    <string name="title_home">Home</string>
+    <string name="title_news">News</string>
+    <string name="title_dashboard">Schedule</string>
+    <string name="title_notifications">Results</string>
+    <string name="title_standings">Standings</string>
+    <string name="title_drivers">Drivers</string>
+    <string name="title_activity_splash">@string/app_name</string>
+    <string name="current_sta">Current Standings</string>
+    <string name="view_all">View All  </string>
+
+</resources>

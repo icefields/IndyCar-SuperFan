@@ -1,0 +1,1098 @@
+{
+    "drivers": {
+        "sr:competitor:414871": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:414871",
+                "name": "Kaiser, Kyle",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:444202": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:444202",
+                "name": "Ferrucci, Santino",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:746559",
+                    "name": "Dreyer & Reinbold Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:552753": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:552753",
+                "name": "Malukas, David",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:877909",
+                    "name": "Dale Coyne Racing With Hmd Motorsports",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:8101": {
+            "competitor": {
+                "country_code": "FRA",
+                "gender": "male",
+                "id": "sr:competitor:8101",
+                "name": "Bourdais, Sebastien",
+                "nationality": "France"
+            },
+            "info": {
+                "country_code_of_residence": "FRA",
+                "country_of_residence": "France",
+                "country_of_residence_id": "sr:country:73",
+                "debut": "2008-03-16",
+                "first_points": "2008-03-16",
+                "height": "179",
+                "url_official": "http://www.sebastien-bourdais.com/",
+                "salary": "1300000",
+                "weight": "72"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321521": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321521",
+                "name": "Carpenter, Ed",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435246",
+                    "name": "Ed Carpenter Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:377802": {
+            "competitor": {
+                "country_code": "CAN",
+                "gender": "male",
+                "id": "sr:competitor:377802",
+                "name": "Claman Demelo, Zachary",
+                "nationality": "Canada"
+            },
+            "info": {
+                "country_code_of_residence": "CAN",
+                "country_of_residence": "Canada",
+                "country_of_residence_id": "sr:country:38"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321527": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321527",
+                "name": "Hildebrand, John R",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435244",
+                    "name": "A.J. Foyt Enterprises",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321525": {
+            "competitor": {
+                "country_code": "BRA",
+                "gender": "male",
+                "id": "sr:competitor:321525",
+                "name": "Castroneves, Helio",
+                "nationality": "Brazil"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:541357",
+                    "name": "Meyer Shank Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:414873": {
+            "competitor": {
+                "country_code": "BRA",
+                "gender": "male",
+                "id": "sr:competitor:414873",
+                "name": "Leist, Matheus",
+                "nationality": "Brazil"
+            },
+            "info": {
+                "country_code_of_residence": "BRA",
+                "country_of_residence": "Brazil",
+                "country_of_residence_id": "sr:country:30"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321529": {
+            "competitor": {
+                "country_code": "CAN",
+                "gender": "male",
+                "id": "sr:competitor:321529",
+                "name": "Hinchcliffe, James",
+                "nationality": "Canada"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:414875": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:414875",
+                "name": "Wilson, Stefan",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:541359",
+                    "name": "Dragonspeed",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:492894": {
+            "competitor": {
+                "country_code": "CHE",
+                "gender": "female",
+                "id": "sr:competitor:492894",
+                "name": "de Silvestro, Simona",
+                "nationality": "Switzerland"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:788114",
+                    "name": "Paretta Autosport",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:320089": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:320089",
+                "name": "Andretti, Marco",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:746553",
+                    "name": "Andretti Herta Autosport W/ Marco Andretti & Curb-Agajanian",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321533": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321533",
+                "name": "Hunter-Reay, Ryan",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321531": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:321531",
+                "name": "Howard, Jay",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321537": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321537",
+                "name": "Karam, Sage",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:746559",
+                    "name": "Dreyer & Reinbold Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:414867": {
+            "competitor": {
+                "country_code": "AUT",
+                "gender": "male",
+                "id": "sr:competitor:414867",
+                "name": "Binder, Rene",
+                "nationality": "Austria"
+            },
+            "info": {
+                "country_code_of_residence": "AUT",
+                "country_of_residence": "Austria",
+                "country_of_residence_id": "sr:country:14"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321535": {
+            "competitor": {
+                "country_code": "BRA",
+                "gender": "male",
+                "id": "sr:competitor:321535",
+                "name": "Kanaan, Tony",
+                "nationality": "Brazil"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:416131",
+                    "name": "Chip Ganassi Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:414869": {
+            "competitor": {
+                "country_code": "BRA",
+                "gender": "male",
+                "id": "sr:competitor:414869",
+                "name": "Fittipaldi, Pietro",
+                "nationality": "Brazil"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:568779": {
+            "competitor": {
+                "country_code": "COL",
+                "gender": "female",
+                "id": "sr:competitor:568779",
+                "name": "Calderon, Tatiana",
+                "nationality": "Colombia"
+            },
+            "info": {
+                "country_code_of_residence": "COL",
+                "country_of_residence": "Colombia",
+                "country_of_residence_id": "sr:country:47"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435244",
+                    "name": "A.J. Foyt Enterprises",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321539": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321539",
+                "name": "Kimball, Charlie",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:336799": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:336799",
+                "name": "Lazier, Buddy",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:502752": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:502752",
+                "name": "Herta, Colton",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:877907",
+                    "name": "Andretti Autosport W/ Curb-Agajanian",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:502754": {
+            "competitor": {
+                "country_code": "MEX",
+                "gender": "male",
+                "id": "sr:competitor:502754",
+                "name": "O Ward, Patricio",
+                "nationality": "Mexico"
+            },
+            "info": {
+                "country_code_of_residence": "MEX",
+                "country_of_residence": "Mexico",
+                "country_of_residence_id": "sr:country:138"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435242",
+                    "name": "Arrow McLaren SP",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:336795": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:336795",
+                "name": "Harvey, Jack",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435238",
+                    "name": "Rahal Letterman Lanigan Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:136140": {
+            "competitor": {
+                "country_code": "SWE",
+                "gender": "male",
+                "id": "sr:competitor:136140",
+                "name": "Ericsson, Marcus",
+                "nationality": "Sweden"
+            },
+            "info": {
+                "country_code_of_residence": "SWE",
+                "country_of_residence": "Sweden",
+                "country_of_residence_id": "sr:country:205",
+                "debut": "2014-03-17",
+                "first_points": "2015-03-15",
+                "height": "180",
+                "salary": "500000",
+                "weight": "70"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:416131",
+                    "name": "Chip Ganassi Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:336797": {
+            "competitor": {
+                "country_code": "COL",
+                "gender": "male",
+                "id": "sr:competitor:336797",
+                "name": "Saavedra, Sebastian",
+                "nationality": "Colombia"
+            },
+            "info": {
+                "country_code_of_residence": "COL",
+                "country_of_residence": "Colombia",
+                "country_of_residence_id": "sr:country:47"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:687809": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:687809",
+                "name": "Kirkwood, Kyle",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435244",
+                    "name": "A.J. Foyt Enterprises",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:320091": {
+            "competitor": {
+                "country_code": "NZL",
+                "gender": "male",
+                "id": "sr:competitor:320091",
+                "name": "Dixon, Scott",
+                "nationality": "New Zealand"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:416131",
+                    "name": "Chip Ganassi Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:320093": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:320093",
+                "name": "Daly, Conor",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435246",
+                    "name": "Ed Carpenter Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:541327": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:541327",
+                "name": "Hanley, Ben",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321543": {
+            "competitor": {
+                "country_code": "COL",
+                "gender": "male",
+                "id": "sr:competitor:321543",
+                "name": "Munoz, Carlos",
+                "nationality": "Colombia"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:785838": {
+            "competitor": {
+                "country_code": "CAN",
+                "gender": "male",
+                "id": "sr:competitor:785838",
+                "name": "Defrancesco, Devlin",
+                "nationality": "Canada"
+            },
+            "info": {
+                "country_code_of_residence": "CAN",
+                "country_of_residence": "Canada",
+                "country_of_residence_id": "sr:country:38"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:877901",
+                    "name": "Andretti Steinbrenner Autosport",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:39995": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:39995",
+                "name": "Johnson, Jimmie",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:416131",
+                    "name": "Chip Ganassi Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321545": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321545",
+                "name": "Newgarden, Josef",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435236",
+                    "name": "Team Penske",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:4523": {
+            "competitor": {
+                "country_code": "COL",
+                "gender": "male",
+                "id": "sr:competitor:4523",
+                "name": "Montoya, Juan Pablo",
+                "nationality": "Colombia"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226",
+                "debut": "2001-03-04",
+                "first_points": "2001-04-29",
+                "height": "168",
+                "url_official": "http://www.jpmontoya.com",
+                "weight": "72"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435242",
+                    "name": "Arrow McLaren SP",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:834720": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:834720",
+                "name": "Ilott, Callum",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435250",
+                    "name": "Juncos Hollinger Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:806258": {
+            "competitor": {
+                "country_code": "DNK",
+                "gender": "male",
+                "id": "sr:competitor:806258",
+                "name": "Magnussen, Kevin",
+                "nationality": "Denmark"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:342722": {
+            "competitor": {
+                "country_code": "FRA",
+                "gender": "male",
+                "id": "sr:competitor:342722",
+                "name": "Vautier, Tristan",
+                "nationality": "France"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:37294": {
+            "competitor": {
+                "country_code": "FRA",
+                "gender": "male",
+                "id": "sr:competitor:37294",
+                "name": "Grosjean, Romain",
+                "nationality": "France"
+            },
+            "info": {
+                "country_code_of_residence": "CHE",
+                "country_of_residence": "Switzerland",
+                "country_of_residence_id": "sr:country:206",
+                "debut": "2009-08-23",
+                "first_points": "2012-04-15",
+                "height": "180",
+                "url_official": "http://www.romaingrosjean.com/",
+                "salary": "1000000",
+                "weight": "71"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435234",
+                    "name": "Andretti Autosport",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321547": {
+            "competitor": {
+                "country_code": "FRA",
+                "gender": "male",
+                "id": "sr:competitor:321547",
+                "name": "Pagenaud, Simon",
+                "nationality": "France"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:541357",
+                    "name": "Meyer Shank Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321549": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321549",
+                "name": "Pigot, Spencer",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:746561",
+                    "name": "Rahal Letterman Lanigan Racing W/ Citrone/Buhl Autosport",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:336801": {
+            "competitor": {
+                "country_code": "COL",
+                "gender": "male",
+                "id": "sr:competitor:336801",
+                "name": "Chaves, Gabby",
+                "nationality": "Colombia"
+            },
+            "info": {
+                "country_code_of_residence": "COL",
+                "country_of_residence": "Colombia",
+                "country_of_residence_id": "sr:country:47"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:613424": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:613424",
+                "name": "Enerson, Richard Clayton",
+                "nationality": "USA"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:338423": {
+            "competitor": {
+                "country_code": "AUS",
+                "gender": "male",
+                "id": "sr:competitor:338423",
+                "name": "Davison, James",
+                "nationality": "Australia"
+            },
+            "info": {
+                "country_code_of_residence": "AUS",
+                "country_of_residence": "Australia",
+                "country_of_residence_id": "sr:country:13"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:826994": {
+            "competitor": {
+                "country_code": "DNK",
+                "gender": "male",
+                "id": "sr:competitor:826994",
+                "name": "Lundgaard, Christian",
+                "nationality": "Denmark"
+            },
+            "info": {
+                "country_code_of_residence": "DNK",
+                "country_of_residence": "Denmark",
+                "country_of_residence_id": "sr:country:58"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435238",
+                    "name": "Rahal Letterman Lanigan Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:330587": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:330587",
+                "name": "Veach, Zach",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:677077": {
+            "competitor": {
+                "country_code": "ESP",
+                "gender": "male",
+                "id": "sr:competitor:677077",
+                "name": "Palou, Alex",
+                "nationality": "Spain"
+            },
+            "info": {
+                "country_code_of_residence": "ESP",
+                "country_of_residence": "Spain",
+                "country_of_residence_id": "sr:country:199"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:416131",
+                    "name": "Chip Ganassi Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:336803": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "female",
+                "id": "sr:competitor:336803",
+                "name": "Mann, Pippa",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:730391": {
+            "competitor": {
+                "country_code": "NZL",
+                "gender": "male",
+                "id": "sr:competitor:730391",
+                "name": "McLaughlin, Scott",
+                "nationality": "New Zealand"
+            },
+            "info": {
+                "country_code_of_residence": "NZL",
+                "country_of_residence": "New Zealand",
+                "country_of_residence_id": "sr:country:153"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435236",
+                    "name": "Team Penske",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321553": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:321553",
+                "name": "Rahal, Graham",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435238",
+                    "name": "Rahal Letterman Lanigan Racing",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:321555": {
+            "competitor": {
+                "country_code": "ESP",
+                "gender": "male",
+                "id": "sr:competitor:321555",
+                "name": "Servia, Oriol",
+                "nationality": "Spain"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:84105": {
+            "competitor": {
+                "country_code": "GBR",
+                "gender": "male",
+                "id": "sr:competitor:84105",
+                "name": "Chilton, Max",
+                "nationality": "Great Britain"
+            },
+            "info": {
+                "country_code_of_residence": "GBR",
+                "country_of_residence": "Great Britain",
+                "country_of_residence_id": "sr:country:225",
+                "height": "182",
+                "salary": "150000",
+                "weight": "65"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321551": {
+            "competitor": {
+                "country_code": "AUS",
+                "gender": "male",
+                "id": "sr:competitor:321551",
+                "name": "Power, Will",
+                "nationality": "Australia"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435236",
+                    "name": "Team Penske",
+                    "gender": "male"
+                }
+            ]
+        },
+        "sr:competitor:319523": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:319523",
+                "name": "Ware, Cody",
+                "nationality": "USA"
+            },
+            "info": {},
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321557": {
+            "competitor": {
+                "country_code": "ARE",
+                "gender": "male",
+                "id": "sr:competitor:321557",
+                "name": "Jones, Ed",
+                "nationality": "United Arab Emirates"
+            },
+            "teams": [
+                []
+            ]
+        },
+        "sr:competitor:321559": {
+            "competitor": {
+                "country_code": "RUS",
+                "gender": "male",
+                "id": "sr:competitor:321559",
+                "name": "Aleshin, Mikhail",
+                "nationality": "Russia"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                []
+            ]
+        }
+    }
+}

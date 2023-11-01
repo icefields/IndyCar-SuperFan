@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/seasonCareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/racesCareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/winsCareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/top5CareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/top10CareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/pointsCareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/positionCareerTxt"
+        android:layout_weight="1"
+        android:textSize="@dimen/font_size_career_list"
+        android:layout_width="0dp"
+        tools:text="2023"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

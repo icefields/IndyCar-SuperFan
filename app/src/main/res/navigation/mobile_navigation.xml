@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainNav"
+    app:startDestination="@+id/navigation_home">
+
+    <!-- navigate to single race weekend results -->
+    <action
+        android:id="@+id/action_global_raceWeekendFragment"
+        app:destination="@id/race_results"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+
+    <!-- navigate to single race weekend schedule -->
+    <action
+        android:id="@+id/action_global_raceWeekendScheduleFragment"
+        app:destination="@id/race_schedule"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+
+    <!-- navigate to single driver standings -->
+    <action
+        android:id="@+id/action_global_standingsFragment"
+        app:destination="@id/navigation_standings"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+
+    <!-- navigate to driver profile -->
+    <action
+        android:id="@+id/action_global_driverFragment"
+        app:destination="@id/driver_profile"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="org.hungrytessy.indycarsuperfan.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="org.hungrytessy.indycarsuperfan.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="org.hungrytessy.indycarsuperfan.ui.schedule.ScheduleFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/navigation_results"
+        android:name="org.hungrytessy.indycarsuperfan.ui.results.ResultsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_results" />
+
+    <fragment
+        android:id="@+id/navigation_standings"
+        android:name="org.hungrytessy.indycarsuperfan.ui.standings.StandingsFragment"
+        android:label="@string/title_standings"
+        tools:layout="@layout/fragment_standings" />
+
+    <fragment
+        android:id="@+id/navigation_drivers"
+        android:name="org.hungrytessy.indycarsuperfan.ui.drivers.DriverListFragment"
+        android:label="@string/title_drivers"
+        tools:layout="@layout/fragment_driver_list" />
+
+    <fragment
+        android:id="@+id/driver_profile"
+        android:name="org.hungrytessy.indycarsuperfan.ui.driver.DriverFragment"
+        tools:layout="@layout/fragment_driver" >
+        <argument
+            android:name="driver_id"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/race_results"
+        android:name="org.hungrytessy.indycarsuperfan.ui.results.singlerace.SingleRaceResultsFragment"
+        tools:layout="@layout/fragment_single_race_results" >
+        <argument
+            android:name="race_id"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/race_schedule"
+        android:name="org.hungrytessy.indycarsuperfan.ui.schedule.singlerace.SingleRaceScheduleFragment"
+        tools:layout="@layout/fragment_single_race_schedule" >
+        <argument
+            android:name="race_id"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+</navigation>

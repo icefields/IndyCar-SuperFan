@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Season Stats"
+        android:padding="5dp"
+        android:textColor="@color/gray_200"
+        android:textSize="@dimen/font_size_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+
+        <!-- CURRENT STANDING -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/stat_chip_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/ic_laurel_wreath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Current\nStanding"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_driver_stat_title"
+                android:lineSpacingExtra="-6dp"
+                android:fontFamily="@font/kanit_light"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/currentStandingTxt"
+                android:fontFamily="@font/kanit_bold"
+                android:textSize="@dimen/font_size_driver_stat"
+                tools:text="32"
+                android:layout_marginEnd="5dp"
+                android:layout_width="match_parent"
+                android:gravity="bottom|end"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+
+        <!-- WINS -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/stat_chip_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/ic_stat_cup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Wins\n"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_driver_stat_title"
+                android:lineSpacingExtra="-6dp"
+                android:fontFamily="@font/kanit_light"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/winsTxt"
+                android:textSize="@dimen/font_size_driver_stat"
+                android:fontFamily="@font/kanit_bold"
+                android:layout_marginEnd="5dp"
+                tools:text="32"
+                android:layout_width="match_parent"
+                android:gravity="bottom|end"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+
+        <!-- PODIUMS -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/stat_chip_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/ic_stats_podiums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Podiums\n"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_driver_stat_title"
+                android:lineSpacingExtra="-6dp"
+                android:fontFamily="@font/kanit_light"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/podiumsTxt"
+                android:textSize="@dimen/font_size_driver_stat"
+                android:layout_marginEnd="5dp"
+                tools:text="32"
+                android:fontFamily="@font/kanit_bold"
+                android:layout_width="match_parent"
+                android:gravity="bottom|end"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+
+        <!-- POINTS -->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="8dp"
+            android:background="@drawable/stat_chip_bg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/ic_stats_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="Points"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_driver_stat_title"
+                android:lineSpacingExtra="-6dp"
+                android:fontFamily="@font/kanit_light"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/pointsTxt"
+                android:layout_marginEnd="5dp"
+                android:layout_width="match_parent"
+                android:textSize="@dimen/font_size_driver_stat"
+                android:fontFamily="@font/kanit_bold"
+                tools:text="32"
+                android:gravity="bottom|end"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</LinearLayout>

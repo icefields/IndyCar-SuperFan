@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorSurface"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/rssImage"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/titleLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:src="@android:drawable/ic_menu_share"
+                android:background="@android:color/transparent"
+                app:tint="#00FFFF"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/rssImage"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/titleTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minLines="1"
+                    android:maxLines="4"
+                    android:lineSpacingExtra="-5sp"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/kanit"
+                    tools:text="title" />
+
+                <TextView
+                    android:id="@+id/subtitleTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:lineSpacingExtra="-1sp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/kanit_light"
+                    android:minLines="0"
+                    android:maxLines="4"
+                    tools:text="subtitle\nsubsubsub" />
+
+                <TextView
+                    android:id="@+id/dateTxt"
+                    android:textSize="10dp"
+                    android:textColor="@color/gray_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="@font/kanit_light"
+                    android:lines="1"
+                    tools:text="subtitle" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

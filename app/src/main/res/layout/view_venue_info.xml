@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/track_bg"
+    tools:context=".ui.results.ResultsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/track_img"
+            app:layout_constraintTop_toBottomOf="@+id/raceName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/raceLocation"
+            android:layout_marginStart="2dp"
+            android:padding="10dp"
+            android:scaleType="fitEnd"
+            android:foregroundGravity="right"
+            tools:src="@drawable/track_toronto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/raceName"
+            tools:text = "Texas GP"
+            android:lineSpacingExtra="-10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="27dp"
+            android:fontFamily="@font/kanit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/raceLaps"
+            tools:text = "666 laps"
+            android:layout_marginTop="40dp"
+            android:textSize="17dp"
+            android:fontFamily="@font/kanit_light"
+            app:layout_constraintTop_toBottomOf="@+id/raceName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/raceMiles"
+            tools:text = "666 miles"
+            android:textSize="17dp"
+            android:fontFamily="@font/kanit_light"
+            app:layout_constraintBottom_toTopOf="@+id/raceLocation"
+            app:layout_constraintLeft_toRightOf="@+id/raceLaps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/raceLocation"
+            tools:text = "Houston, Texas"
+            android:textSize="17dp"
+            android:fontFamily="@font/kanit_light"
+            app:layout_constraintTop_toBottomOf="@+id/raceLaps"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/raceDate"
+            tools:text = "April 4 2024"
+            android:textSize="17dp"
+            android:fontFamily="@font/kanit_light"
+            app:layout_constraintTop_toBottomOf="@+id/raceLocation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

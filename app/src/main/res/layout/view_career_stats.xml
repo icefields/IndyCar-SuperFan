@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Career Stats"
+        android:layout_marginStart="5dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/gray_200"
+        android:textSize="@dimen/font_size_titles"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="?android:attr/colorBackground"
+        android:layout_width="match_parent"
+        android:paddingVertical="4dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:layout_width="0dp"
+            android:text="Season"
+            android:lines="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:lines="1"
+            android:layout_width="0dp"
+            android:text="Races"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:layout_width="0dp"
+            android:lines="1"
+            android:text="Wins"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:layout_width="0dp"
+            android:lines="1"
+            android:text="Top 5"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:lines="1"
+            android:layout_width="0dp"
+            android:text="Top 10"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:lines="1"
+            android:layout_width="0dp"
+            android:text="Points"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:fontFamily="@font/kanit_light"
+            android:layout_weight="1"
+            android:textSize="@dimen/font_size_career_list_title"
+            android:lines="1"
+            android:layout_width="0dp"
+            android:text="Pos."
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/careerStatsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false" />
+</LinearLayout>
