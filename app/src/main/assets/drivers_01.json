@@ -1,5 +1,226 @@
 {
     "drivers": {
+		"sr:competitor:417085": {
+			"competitor": {
+				"id":"sr:competitor:417085",
+				"name":"Rosenqvist, Felix",
+				"abbreviation":"ROS",
+				"gender":"male",
+				"nationality": "Sweden",
+                "country_code": "SWE"
+			},
+			"teams": [
+                {
+                    "id": "sr:competitor:435242",
+                    "name": "Arrow McLaren SP",
+                    "gender": "male"
+                }
+            ],
+            "info": {
+                "country_code_of_residence": "SWE",
+                "country_of_residence": "Sweden",
+                "country_of_residence_id": "sr:country:205"
+            }
+		},
+		"sr:competitor:70150": {
+            "competitor": {
+                "country_code": "USA",
+                "gender": "male",
+                "id": "sr:competitor:70150",
+                "name": "Rossi, Alexander",
+                "nationality": "USA"
+            },
+            "info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+            "teams": [
+                {
+                    "id": "sr:competitor:435242",
+                    "name": "Arrow McLaren SP",
+                    "gender": "male"
+                }
+            ]
+        },
+		"sr:competitor:4527": {
+			"competitor": {
+				"id":"sr:competitor:4527",
+				"name":"Sato, Takuma",
+				"abbreviation":"SAT",
+				"gender":"male",
+				"country_code": "JAP",
+                "nationality": "Japan"
+			},
+			"teams": [
+						{
+                            "id": "sr:competitor:416131",
+                            "name": "Chip Ganassi Racing"
+                        }
+                   ],
+			"info": {
+				"country_of_residence":"Japan",
+				"country_code_of_residence":"JAP"
+			}
+		},
+		"sr:competitor:785840": {
+			"competitor": {
+				"id":"sr:competitor:785840",
+				"name":"Lundqvist, Linus",
+				"abbreviation":"LUN",
+				"gender":"male",
+				"nationality": "Sweden",
+                "country_code": "SWE"
+			},
+			"teams": [
+						{
+                            "id": "sr:competitor:416131",
+                            "name": "Chip Ganassi Racing"
+                        }
+                   ],
+            "info": {
+                "country_code_of_residence": "SWE",
+                "country_of_residence": "Sweden",
+                "country_of_residence_id": "sr:country:205"
+            }
+		},
+		"sr:competitor:552747": {
+			"competitor": {
+				"id":"sr:competitor:552747",
+				"name":"Veekay, Rinus",
+				"abbreviation":"VEE",
+				"gender":"male",
+				"country_code": "NLD",
+                "nationality": "Netherlands"
+			},
+			"teams":
+				[
+					{
+						"id":"sr:competitor:435246",
+						"name":"Ed Carpenter Racing",
+						"abbreviation":"EDC",
+						"gender":"male"
+					}
+				],
+			"info": {
+				"country_of_residence": "Netherlands",
+				"country_of_residence_id":"sr:country:150",
+				"country_code_of_residence":"NLD"
+			}
+		},
+		"sr:competitor:1051763": {
+			"competitor": {
+				"id":"sr:competitor:1051763",
+				"name":"Vips, Juri",
+				"abbreviation":"VIP",
+				"gender":"male",
+				"country_code": "EST",
+                "nationality": "Estonia"
+			},
+			"teams":[{
+                    "id": "sr:competitor:435238",
+                    "name": "Rahal Letterman Lanigan Racing",
+                    "gender": "male"
+                }],
+			"info": {
+				"country_of_residence":"Estonia",
+				"country_code_of_residence":"EST"
+			}
+		},
+		"sr:competitor:202487": {
+			"competitor": {
+				"id":"sr:competitor:202487",
+				"name":"Blomqvist, Tom",
+				"abbreviation":"BLO",
+				"gender":"male",
+				"country_code": "GBR",
+                "nationality": "Great Britain"
+			},
+			"teams": [{"id":"sr:competitor:67872","name":"BMW Team RBM","abbreviation":"BMW","gender":"male"}],
+			"info": {
+				"country_of_residence":"Great Britain",
+				"country_of_residence_id":"sr:country:225",
+				"country_code_of_residence":"GBR"
+			}
+		},
+		"sr:competitor:785846": {
+			"competitor": {
+				"id":"sr:competitor:785846",
+				"name":"Robb, Sting Ray",
+				"abbreviation":"ROB",
+				"gender":"male",
+				"country_code": "USA",
+                "nationality": "USA"
+			},
+			"info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+			"teams":[[]]
+		},
+		"sr:competitor:986535": {
+			"competitor": {
+				"id":"sr:competitor:986535",
+				"name":"Canapino, Agustin Hugo",
+				"abbreviation":"CAN",
+				"gender":"male",
+				"country_code": "ARG",
+                "nationality": "Argentina"
+			},
+			"info": {
+                "country_code_of_residence": "ARG",
+                "country_of_residence": "Argentina"
+            },
+			"teams": [
+                {
+                    "id": "sr:competitor:435250",
+                    "name": "Juncos Hollinger Racing",
+                    "gender": "male"
+                }
+            ]
+		},
+		"sr:competitor:785842": {
+			"competitor": {
+				"id":"sr:competitor:785842",
+				"name":"Pedersen, Benjamin",
+				"abbreviation":"PED",
+				"gender":"male",
+				"country_code": "DNK",
+                "nationality": "Denmark"
+			},
+			"info": {
+                "country_code_of_residence": "DNK",
+                "country_of_residence": "Denmark",
+                "country_of_residence_id": "sr:country:58"
+            },
+			"teams": [{
+                    "id": "sr:competitor:435244",
+                    "name": "A.J. Foyt Enterprises",
+                    "gender": "male"
+                }]
+		},
+		"sr:competitor:986533": {
+			"competitor":{
+				"id":"sr:competitor:986533",
+				"name":"Armstrong, Marcus",
+				"abbreviation":"ARM",
+				"gender":"male",
+				"nationality": "USA",
+				"country_code": "USA"
+			},
+			"info": {
+                "country_code_of_residence": "USA",
+                "country_of_residence": "USA",
+                "country_of_residence_id": "sr:country:226"
+            },
+			"teams": [
+						{
+                            "id": "sr:competitor:416131",
+                            "name": "Chip Ganassi Racing"
+                        }
+                   ]
+		},
         "sr:competitor:414871": {
             "competitor": {
                 "country_code": "USA",
@@ -782,8 +1003,8 @@
             },
             "teams": [
                 {
-                    "id": "sr:competitor:435234",
-                    "name": "Andretti Autosport",
+                    "id": "sr:competitor:435250",
+                    "name": "Juncos Hollinger Racing",
                     "gender": "male"
                 }
             ]

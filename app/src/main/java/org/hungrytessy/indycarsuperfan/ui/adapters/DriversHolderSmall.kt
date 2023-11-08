@@ -28,7 +28,7 @@ open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView)
             .into(driverImage)
 
         currentDriver.getDriver()?.getFlagDrawable()?.let { countryImg.setImageResource(it) }
-        driverNameText.text = currentDriver.getDriver()?.competitor?.name
+        driverNameText.text = currentDriver.getDriver()?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         pointsText.text = "${currentDriver.result?.points}"
 

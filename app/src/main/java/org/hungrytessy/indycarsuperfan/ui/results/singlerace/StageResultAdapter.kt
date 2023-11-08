@@ -73,7 +73,7 @@ class StageResultHolderQualify(itemView: View): StageResultHolder(itemView) {
 class StageResultHolderRace(itemView: View): StageResultHolder(itemView) {
     override fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener, position: Int) {
         super.bind(currentDriver, listener, position)
-        driverNameText.text = currentDriver.getDriver()?.competitor?.name
+        driverNameText.text = currentDriver.getDriver()?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         driverAvgSpeed.text = "${currentDriver.result?.avgSpeed}"
         pointsText.text = "${currentDriver.result?.points}"

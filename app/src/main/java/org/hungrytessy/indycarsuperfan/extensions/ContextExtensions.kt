@@ -155,7 +155,7 @@ fun BaseStage.getTrackDrawable(): Int {
 }
 
 fun Driver.getFlagDrawable(): Int = when((competitor?.nationality ?: "").lowercase()) {
-    "argentina" -> R.drawable.flag_argentina
+    //"argentina" -> R.drawable.flag_argentina
     "brazil" -> R.drawable.flag_brazil
     "canada" -> R.drawable.flag_canada
     "denmark" -> R.drawable.flag_denmark
