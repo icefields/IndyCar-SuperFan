@@ -37,15 +37,14 @@ fun Context.readStringAsset(fileName : String) : String {
     return assets.open(fileName).bufferedReader().use { it.readText()}
 }
 
-fun ImageView.loadDriverImage(carNumber: Int?, driver: Driver?) {
-    val pathUri = getAssetUrlHeadshot(carNumber?: -1, driver)
+fun ImageView.loadDriverImage(driver: Driver?) {
     Glide.with(this)
         .asBitmap()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .placeholder(R.drawable.img_placeholder)
         .error(R.drawable.img_placeholder)
-        .load(Uri.parse(pathUri))
-        .override(2600, 2200)
+        .load(Uri.parse(driver?.getAssetUrlHeadshot()))
+        // .override(2600, 2200)
         .centerCrop()
         .into(this)
 }
@@ -112,14 +111,10 @@ fun getAssetUrlBigNumber(carNumber: Int, driver: Driver?): String {
     return "file:///android_asset/"+ replacePlaceholder(AssetImageType.NUMBER_M, carNumberStr)
 }
 
-fun getAssetUrlHeadshot(carNumber: Int, driver: Driver?): String {
-    val carNumberStr: String = if (carNumber == 6
-        && driver?.competitor?.name?.contains("Helio") == true) {
-        "0${carNumber}"
-    } else {
-        "$carNumber"
-    }
-    return "file:///android_asset/"+ replacePlaceholder(AssetImageType.HEADSHOT, carNumberStr)
+fun Driver.getAssetUrlHeadshot(): String {
+    val name = (competitor?.name ?: "").split(", ")[1].lowercase()
+    val lastName = (competitor?.name ?: "").split(", ")[0].lowercase().replace(" ", "_")
+    return "file:///android_asset/images/headshots/img_${name[0]}_${lastName}.png"
 }
 
 fun replacePlaceholder(type: AssetImageType, name: String): String {
@@ -155,7 +150,8 @@ fun BaseStage.getTrackDrawable(): Int {
 }
 
 fun Driver.getFlagDrawable(): Int = when((competitor?.nationality ?: "").lowercase()) {
-    //"argentina" -> R.drawable.flag_argentina
+    "argentina" -> R.drawable.flag_argentina
+    "australia" -> R.drawable.flag_australia
     "brazil" -> R.drawable.flag_brazil
     "canada" -> R.drawable.flag_canada
     "denmark" -> R.drawable.flag_denmark
@@ -168,5 +164,12 @@ fun Driver.getFlagDrawable(): Int = when((competitor?.nationality ?: "").lowerca
     "united kingdom" -> R.drawable.flag_uk
     "great britain" -> R.drawable.flag_uk
     "usa" -> R.drawable.flag_unitedstates
+    "japan" -> R.drawable.flag_japan
+    "estonia" -> R.drawable.flag_estonia
+    "italy" -> R.drawable.flag_italy
+    "colombia" -> R.drawable.flag_colombia
+    "russia" -> R.drawable.flag_russia
+    "austria" -> R.drawable.flag_austria
+    "switzerland" -> R.drawable.flag_switzerland
     else -> R.drawable.ic_menu_drivers
 }

@@ -51,13 +51,7 @@ class DriverListAdapter(
                 teamText.visibility = View.GONE
             }
 
-            currentDriver.competitor?.id?.let { id ->
-                IndyDataStore.getResultsDriverCurrentSeason(id)?.let { summary ->
-                    driverImage.loadDriverImage(summary.result?.carNumber ?: -1, currentDriver)
-                }
-            } ?: run {
-                driverImage.setImageResource(R.drawable.img_placeholder)
-            }
+            driverImage.loadDriverImage(currentDriver)
         }
     }
 }

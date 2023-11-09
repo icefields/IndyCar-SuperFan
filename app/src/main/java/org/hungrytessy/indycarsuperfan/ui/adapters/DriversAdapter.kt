@@ -35,7 +35,7 @@ class DriversAdapter(
         private val pointsText : TextView = itemView.findViewById(org.hungrytessy.indycarsuperfan.R.id.driverPoints)
 
         fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener) {
-            driverImage.loadDriverImage(currentDriver.result?.carNumber ?: -1, currentDriver.getDriver())
+            driverImage.loadDriverImage(currentDriver.getDriver())
             driverNameText.text = currentDriver.getDriver()?.competitor?.name
             positionText.text = "${currentDriver.result?.position}"
             pointsText.text = "${currentDriver.result?.points}pts"

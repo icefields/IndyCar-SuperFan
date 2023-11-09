@@ -28,6 +28,7 @@ class NewsFragment : IndyFragment() {
             val adapter = RssFeedAdapter(feed)
             binding.rssFeedList.adapter = adapter
             binding.rssFeedList.layoutManager = LinearLayoutManager(requireContext())
+            binding.progressView.visibility = View.GONE
         }
     }
 

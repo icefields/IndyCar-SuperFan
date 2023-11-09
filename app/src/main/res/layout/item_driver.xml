@@ -68,7 +68,7 @@
         <ImageView
             android:id="@+id/countryImg"
             android:layout_width="35dp"
-            android:layout_height="24dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:scaleType="fitXY"
             android:src="@drawable/ic_logo_car" />

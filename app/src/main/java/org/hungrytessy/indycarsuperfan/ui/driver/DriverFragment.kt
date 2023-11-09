@@ -60,7 +60,7 @@ class DriverFragment : IndyFragment() {
 
         driverViewModel.driverResultsCurrentSeasons.observe(viewLifecycleOwner) {
             it?.result?.let { result ->
-                binding.driverImg.loadDriverImage(result.carNumber ?: -1, it.getDriver())
+                binding.driverImg.loadDriverImage(it.getDriver())
                 binding.statsLayout.podiumsTxt.text = "${result.podiums?:""}"
                 binding.statsLayout.currentStandingTxt.text = "${result.position?:""}"
                 binding.statsLayout.winsTxt.text = "${result.victories?:""}"
