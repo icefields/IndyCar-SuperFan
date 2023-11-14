@@ -52,7 +52,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Navigation
-    val navVersion = "2.7.4"
+    val navVersion = "2.7.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$navVersion")
@@ -69,7 +69,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.0")
 
     // API requests
-    val retrofit2Version = "2.6.0"
+    val retrofit2Version = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofit2Version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit2Version")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
@@ -79,8 +79,10 @@ dependencies {
     // kapt('com.github.bumptech.glide:compiler:4.11.0')
 
     // coroutines in Android
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    val coroutinesVersion = "1.7.3"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutinesVersion")
 
     // RSS parser
     implementation("com.prof18.rssparser:rssparser:6.0.3")

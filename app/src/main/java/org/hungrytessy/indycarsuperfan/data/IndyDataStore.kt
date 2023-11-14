@@ -3,7 +3,11 @@ package org.hungrytessy.indycarsuperfan.data
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore.raceWeekends
+import org.hungrytessy.indycarsuperfan.data.IndyDataStore.seasonResults
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore.seasons
 
 import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
@@ -16,6 +20,7 @@ import org.hungrytessy.indycarsuperfan.data.models.Venue
 import org.hungrytessy.indycarsuperfan.data.models.Venues
 import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
 import org.hungrytessy.indycarsuperfan.extensions.readStringAsset
+import org.hungrytessy.indycarsuperfan.network.IndyNetwork
 import java.util.TreeMap
 import java.util.TreeSet
 
@@ -29,37 +34,41 @@ object IndyDataStore {
     /**
      * call this on splash
      */
-    fun generate(context: Context, done: (Boolean) -> Unit) {
-        drivers.putAll(
-            Gson().fromJson(
-                context.readStringAsset("drivers_01.json"),
-                Drivers::class.java
-            ).drivers
-        )
+    suspend fun generate(context: Context) {
+        withContext(Dispatchers.IO) {
+//            drivers.putAll(
+//                Gson().fromJson(
+//                    context.readStringAsset("drivers_01.json"),
+//                    Drivers::class.java
+//                ).drivers
+//            )
+//
+//            seasons.addAll(
+//                Gson().fromJson(
+//                    context.readStringAsset("seasons_03.json"),
+//                    Seasons::class.java
+//                ).stages
+//            )
+//
+//            venues.putAll(
+//                Gson().fromJson(
+//                    context.readStringAsset("venues_01.json"),
+//                    Venues::class.java
+//                ).venues
+//            )
+            val network = IndyNetwork.getNetworkService(context)
+            drivers.putAll(network.getDrivers().drivers)
+            seasons.addAll(network.getSeasons().stages)
+            venues.putAll(network.getVenues().venues)
 
-        seasons.addAll(
-            Gson().fromJson(
-                context.readStringAsset("seasons_03.json"),
-                Seasons::class.java
-            ).stages
-        )
-
-        venues.putAll(
-            Gson().fromJson(
-                context.readStringAsset("venues_01.json"),
-                Venues::class.java
-            ).venues
-        )
-
-        seasonResults = RaceWeekend.allSeasonsRacesFactory(seasons)
-        for (key in seasonResults.keys) {
-            val weekendsTree = seasonResults[key] ?: TreeSet()
-            for (weekend in weekendsTree) {
-                raceWeekends[weekend.id] = weekend
+            seasonResults = RaceWeekend.allSeasonsRacesFactory(seasons)
+            for (key in seasonResults.keys) {
+                val weekendsTree = seasonResults[key] ?: TreeSet()
+                for (weekend in weekendsTree) {
+                    raceWeekends[weekend.id] = weekend
+                }
             }
         }
-
-        done.invoke(true)
     }
 
     fun getNextRace(): Stage? {

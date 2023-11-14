@@ -3,12 +3,12 @@ package org.hungrytessy.indycarsuperfan.extensions
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.AssetManager
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -22,6 +22,7 @@ import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.data.models.BaseStage
 import org.hungrytessy.indycarsuperfan.data.models.Driver
 import java.io.IOException
+import java.security.AccessController.getContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -36,6 +37,8 @@ val AppCompatActivity.navController: NavController? get() {
 fun Context.readStringAsset(fileName : String) : String {
     return assets.open(fileName).bufferedReader().use { it.readText()}
 }
+
+fun Context.isDarkModeOn() = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 
 fun ImageView.loadDriverImage(driver: Driver?) {
     Glide.with(this)
