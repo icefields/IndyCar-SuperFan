@@ -6,11 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.BaseStage
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
-import org.hungrytessy.indycarsuperfan.data.models.indy.SingleRaceStage
-import org.hungrytessy.indycarsuperfan.extensions.addZeroToSingleDigit
-import java.util.Collections.addAll
+import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
 import java.util.TreeSet
 
 class RaceWeekendScheduleAdapter(private val raceWeekend : RaceWeekend): RecyclerView.Adapter<StageScheduleHolder>() {

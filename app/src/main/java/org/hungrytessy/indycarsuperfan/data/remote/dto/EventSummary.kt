@@ -1,6 +1,5 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
-import androidx.recyclerview.widget.SortedList
 import com.google.gson.annotations.SerializedName
 import java.util.TreeSet
 
@@ -15,11 +14,3 @@ data class EventSummaryDetail (
 data class EventSummary (
     @SerializedName("stage") val stage: EventSummaryDetail?
 )
-
-/**
-final String? status; // "Closed",
-final SortedList<CompetitorEventSummary>? competitors;
-final List<Team>? teams;
-final Venue? venue;
-final SortedList<Stage>? stages;
- */

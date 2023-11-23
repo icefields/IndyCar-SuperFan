@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.Stage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 
 class ScheduleAdapter(
     private val racesList : List<Stage>,

@@ -9,8 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.IndyFragment
 import org.hungrytessy.indycarsuperfan.MainActivity
-import org.hungrytessy.indycarsuperfan.data.models.Driver
-import org.hungrytessy.indycarsuperfan.data.models.Venue
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceScheduleBinding
 import org.hungrytessy.indycarsuperfan.extensions.getTrackDrawable
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener

@@ -1,7 +1,6 @@
-package org.hungrytessy.indycarsuperfan.network
+package org.hungrytessy.indycarsuperfan.data.remote.network
 
 import android.content.Context
-import android.util.Log
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType

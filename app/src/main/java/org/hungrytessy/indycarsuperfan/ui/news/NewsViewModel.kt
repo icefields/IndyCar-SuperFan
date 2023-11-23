@@ -3,14 +3,12 @@ package org.hungrytessy.indycarsuperfan.ui.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.viewModelScope
 import com.prof18.rssparser.RssParserBuilder
 import com.prof18.rssparser.model.RssChannel
 import com.prof18.rssparser.model.RssItem
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
-import org.hungrytessy.indycarsuperfan.data.models.Stage
 import org.hungrytessy.indycarsuperfan.extensions.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.extensions.rssDateStringToLocalDateTime
 import java.time.LocalDateTime

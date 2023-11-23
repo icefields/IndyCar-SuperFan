@@ -19,10 +19,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.BaseStage
-import org.hungrytessy.indycarsuperfan.data.models.Driver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import java.io.IOException
-import java.security.AccessController.getContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

@@ -1,13 +1,10 @@
-package org.hungrytessy.indycarsuperfan.network
+package org.hungrytessy.indycarsuperfan.data.remote.network
 
 import android.content.Context
 import okhttp3.OkHttpClient
-import org.hungrytessy.indycarsuperfan.data.models.Drivers
-import org.hungrytessy.indycarsuperfan.data.models.Seasons
-import org.hungrytessy.indycarsuperfan.data.models.Venues
+import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 
 object IndyNetwork {
     private var service: MainNetwork? = null
@@ -19,7 +16,7 @@ object IndyNetwork {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://localhost/")
+                .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

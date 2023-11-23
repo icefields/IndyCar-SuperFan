@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 
 class StatsCareerAdapter(
     private val statsList : Map<Season, CompetitorEventSummary>): RecyclerView.Adapter<StatsCareerAdapter.StatsCareerHolder>() {

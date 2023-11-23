@@ -1,8 +1,7 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 import com.google.gson.internal.LinkedTreeMap
-import kotlin.text.Typography.tm
 
 /**
  * only used to build a list of all drivers

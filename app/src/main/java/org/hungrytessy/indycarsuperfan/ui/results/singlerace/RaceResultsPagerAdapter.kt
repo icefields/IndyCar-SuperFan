@@ -2,10 +2,10 @@ package org.hungrytessy.indycarsuperfan.ui.results.singlerace
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.hungrytessy.indycarsuperfan.data.models.indy.Qualification
-import org.hungrytessy.indycarsuperfan.data.models.indy.QualificationStage
-import org.hungrytessy.indycarsuperfan.data.models.indy.Race
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.Qualification
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.QualificationStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.Race
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
 import java.util.TreeSet
 
 class RaceResultsPagerAdapter(fragment: Fragment, private val raceWeekend: RaceWeekend) : FragmentStateAdapter(fragment) {

@@ -1,6 +1,5 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
-import androidx.recyclerview.widget.SortedList
 import com.google.gson.annotations.SerializedName
 import java.util.TreeSet
 
@@ -16,6 +15,4 @@ data class Stage (
     @SerializedName("stages") val stages: TreeSet<Stage>?,
 
     var stageSummary: EventSummaryDetail?
-): BaseStage() {
-
-}
+): BaseStage()

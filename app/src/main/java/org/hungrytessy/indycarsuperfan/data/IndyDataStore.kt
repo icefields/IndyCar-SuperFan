@@ -2,28 +2,18 @@ package org.hungrytessy.indycarsuperfan.data
 
 import android.content.Context
 import android.util.Log
-import com.google.gson.Gson
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore.raceWeekends
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore.seasonResults
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore.seasons
 
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Driver
-import org.hungrytessy.indycarsuperfan.data.models.Drivers
-import org.hungrytessy.indycarsuperfan.data.models.Season
-import org.hungrytessy.indycarsuperfan.data.models.Seasons
-import org.hungrytessy.indycarsuperfan.data.models.Stage
-import org.hungrytessy.indycarsuperfan.data.models.Venue
-import org.hungrytessy.indycarsuperfan.data.models.Venues
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
-import org.hungrytessy.indycarsuperfan.extensions.readStringAsset
-import org.hungrytessy.indycarsuperfan.network.IndyNetwork
-import java.util.TreeMap
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
+import org.hungrytessy.indycarsuperfan.data.remote.network.IndyNetwork
 import java.util.TreeSet
 
 object IndyDataStore {

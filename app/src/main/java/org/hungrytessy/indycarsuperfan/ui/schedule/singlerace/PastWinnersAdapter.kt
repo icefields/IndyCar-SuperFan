@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.Driver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener
 
 class PastWinnersAdapter(private val drivers : Map<String, Driver>, private val onDriverClickListener: OnDriverClickListener): RecyclerView.Adapter<PastWinnerHolder>() {

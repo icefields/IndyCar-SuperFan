@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Stage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.extensions.addZeroToSingleDigit
 import java.time.Duration
 import java.time.LocalDateTime

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 
 class DriversAdaptersSmall(
     private val driverList : List<CompetitorEventSummary>,

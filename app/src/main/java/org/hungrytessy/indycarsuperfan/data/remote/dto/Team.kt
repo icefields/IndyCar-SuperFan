@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,9 +7,3 @@ data class Team (
     @SerializedName("name") val name: String?,
     @SerializedName("abbreviation") val abbreviation: String?,
 )
-
-/*
-class Team {
-  final String id;
-  final String? name;
- */

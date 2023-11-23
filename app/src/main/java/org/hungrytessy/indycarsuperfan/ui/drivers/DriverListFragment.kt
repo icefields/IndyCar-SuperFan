@@ -4,23 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.MainActivityNav
-import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Driver
 import org.hungrytessy.indycarsuperfan.databinding.FragmentDriverListBinding
-import org.hungrytessy.indycarsuperfan.extensions.addZeroToSingleDigit
-import org.hungrytessy.indycarsuperfan.extensions.getFlagDrawable
-import org.hungrytessy.indycarsuperfan.extensions.loadDriverImage
-import org.hungrytessy.indycarsuperfan.ui.adapters.DriversAdapter
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener
 
 class DriverListFragment : IndyFragment(), OnDriverClickListener {

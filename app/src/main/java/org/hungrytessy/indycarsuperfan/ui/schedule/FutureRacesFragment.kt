@@ -1,18 +1,12 @@
 package org.hungrytessy.indycarsuperfan.ui.schedule
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.MainActivityNav
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.Stage
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
 import org.hungrytessy.indycarsuperfan.databinding.FragmentFutureracesBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnRaceClickListener
 import org.hungrytessy.indycarsuperfan.ui.adapters.ScheduleAdapter

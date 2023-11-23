@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 import org.hungrytessy.indycarsuperfan.extensions.isoZonedDateToLocalDateTime

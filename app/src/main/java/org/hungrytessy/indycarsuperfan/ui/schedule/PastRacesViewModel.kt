@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.Stage
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
-import java.util.TreeSet
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
 
 class PastRacesViewModel : ViewModel() {
 

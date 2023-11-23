@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.extensions.getAssetUrlBigNumber
 import org.hungrytessy.indycarsuperfan.extensions.getFlagDrawable
 

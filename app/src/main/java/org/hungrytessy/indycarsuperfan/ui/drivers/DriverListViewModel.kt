@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.Driver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 
 
 class DriverListViewModel : ViewModel() {

@@ -2,14 +2,13 @@ package org.hungrytessy.indycarsuperfan.ui.results.singlerace
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import org.hungrytessy.indycarsuperfan.IndyFragment
 import org.hungrytessy.indycarsuperfan.MainActivity
-import org.hungrytessy.indycarsuperfan.data.models.Venue
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceResultsBinding
 import org.hungrytessy.indycarsuperfan.extensions.getTrackDrawable
 import java.util.TreeSet

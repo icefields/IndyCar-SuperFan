@@ -1,16 +1,14 @@
 package org.hungrytessy.indycarsuperfan.ui.results.singlerace
 
-import android.text.TextUtils.substring
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.indy.Race
-import org.hungrytessy.indycarsuperfan.data.models.indy.SingleRaceStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.Race
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.SingleRaceStage
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener
 import java.util.TreeSet
 

@@ -3,8 +3,7 @@ package org.hungrytessy.indycarsuperfan
 import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import org.hungrytessy.indycarsuperfan.data.models.Driver
-import org.hungrytessy.indycarsuperfan.data.models.Stage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 
 abstract class IndyFragment : Fragment() {
 

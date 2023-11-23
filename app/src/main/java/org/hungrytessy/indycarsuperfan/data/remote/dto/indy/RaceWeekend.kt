@@ -1,10 +1,9 @@
-package org.hungrytessy.indycarsuperfan.data.models.indy
+package org.hungrytessy.indycarsuperfan.data.remote.dto.indy
 
-import android.util.Log
-import org.hungrytessy.indycarsuperfan.data.models.BaseStage
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Season
-import org.hungrytessy.indycarsuperfan.data.models.Venue
+import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import java.util.TreeSet
 
 class RaceWeekend(): BaseStage() {

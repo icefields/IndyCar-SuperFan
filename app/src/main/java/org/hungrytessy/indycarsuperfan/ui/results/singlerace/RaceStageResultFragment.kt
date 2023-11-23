@@ -1,26 +1,16 @@
 package org.hungrytessy.indycarsuperfan.ui.results.singlerace
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.MainActivityNav
-import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Driver
-import org.hungrytessy.indycarsuperfan.data.models.indy.QualificationStage
-import org.hungrytessy.indycarsuperfan.data.models.indy.Race
-import org.hungrytessy.indycarsuperfan.data.models.indy.SingleRaceStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.QualificationStage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.Race
 import org.hungrytessy.indycarsuperfan.databinding.FragmentRaceStageResultsBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener
-import java.util.TreeSet
 
 private const val ARG_RACE_ID = "race_id"
 private const val ARG_STAGE_ID = "stage_id"

@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.network
+package org.hungrytessy.indycarsuperfan.data.remote.network
 
 const val PATH_DRIVERS = "drivers_01.json"
 const val PATH_SEASONS = "seasons_03.json"

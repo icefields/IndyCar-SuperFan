@@ -9,10 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.data.models.Stage
-import org.hungrytessy.indycarsuperfan.data.models.indy.Race
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
 import org.hungrytessy.indycarsuperfan.extensions.themeColor
 import org.hungrytessy.indycarsuperfan.ui.adapters.DriversHolderSmall
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.hungrytessy.indycarsuperfan.data.models.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.extensions.loadDriverImage
 
 class DriversAdapter(

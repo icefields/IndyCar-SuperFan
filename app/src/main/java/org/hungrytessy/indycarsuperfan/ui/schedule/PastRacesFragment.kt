@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.data.models.Stage
 import org.hungrytessy.indycarsuperfan.databinding.FragmentPastracesBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnRaceClickListener

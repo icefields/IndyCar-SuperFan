@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,12 +9,3 @@ data class DriverInfo (
     @SerializedName("nationality") val nationality: String?,
     @SerializedName("country_code") val countryCode: String?,
 )
-
-/*
-class DriverInfo {
-  final String id;
-  final String? name;
-  final String? gender;
-  final String? nationality;
-  final String? countryCode;
- */

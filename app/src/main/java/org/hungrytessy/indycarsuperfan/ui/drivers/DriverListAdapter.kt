@@ -7,8 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.Driver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.extensions.getFlagDrawable
 import org.hungrytessy.indycarsuperfan.extensions.loadDriverImage
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener

@@ -1,15 +1,12 @@
 package org.hungrytessy.indycarsuperfan.ui.standings
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.MainActivityNav
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.Driver
 import org.hungrytessy.indycarsuperfan.databinding.FragmentStandingsBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.DriversAdaptersSmall
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener

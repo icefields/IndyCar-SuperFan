@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.IndyFragment
-import org.hungrytessy.indycarsuperfan.MainActivityNav
-import org.hungrytessy.indycarsuperfan.data.models.Stage
 import org.hungrytessy.indycarsuperfan.databinding.FragmentResultsBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnRaceClickListener
 import org.hungrytessy.indycarsuperfan.ui.adapters.ScheduleAdapter

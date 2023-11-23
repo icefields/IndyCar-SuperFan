@@ -1,7 +1,6 @@
 package org.hungrytessy.indycarsuperfan.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.IndyFragment
 import org.hungrytessy.indycarsuperfan.MainActivityNav
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.models.indy.RaceWeekend
 import org.hungrytessy.indycarsuperfan.databinding.FragmentHomeBinding
 import org.hungrytessy.indycarsuperfan.ui.adapters.DriversAdapter
 import org.hungrytessy.indycarsuperfan.ui.adapters.OnDriverClickListener

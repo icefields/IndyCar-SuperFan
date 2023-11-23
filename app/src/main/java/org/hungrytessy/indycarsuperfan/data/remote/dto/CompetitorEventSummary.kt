@@ -1,8 +1,7 @@
-package org.hungrytessy.indycarsuperfan.data.models
+package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import java.util.TreeSet
 
 data class CompetitorEventSummary (
     @SerializedName("id") val id: String,
@@ -21,20 +20,3 @@ data class CompetitorEventSummary (
         return result.position - other.result.position
     }
 }
-
-
-/**
-final String id;
-final DriverInfo competitor;
-final CompetitorEventResult? result;
-
-@override
-int compareTo(CompetitorEventSummary other) {
-if (result == null) return 1;
-if (result!.position == null) return 1;
-if (other.result == null) return -1;
-if (other.result!.position == null) return -1;
-
-return result!.position! - other.result!.position!;
-}
- */
