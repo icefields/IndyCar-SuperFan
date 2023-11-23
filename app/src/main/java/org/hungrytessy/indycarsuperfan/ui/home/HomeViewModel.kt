@@ -12,7 +12,7 @@ import java.time.Duration
 import java.time.LocalDateTime
 import kotlin.math.abs
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val indyDataStore: IndyDataStore) : ViewModel() {
 
     private val _nextRace = MutableLiveData<Stage>()
     val nextRace: LiveData<Stage> = _nextRace
@@ -26,14 +26,14 @@ class HomeViewModel : ViewModel() {
     private lateinit var timer: CountDownTimer
 
     fun fetchNextRace() {
-        IndyDataStore.getNextRace()?.let { race ->
+        indyDataStore.getNextRace()?.let { race ->
             _nextRace.value = race
             initTimer(race)
         }
     }
 
     fun fetchCurrentStandings() {
-        _currentStandings.value = IndyDataStore.getCurrentStanding()
+        _currentStandings.value = indyDataStore.getCurrentStanding()
     }
 
     private fun initTimer(race: Stage) {

@@ -3,8 +3,10 @@ package org.hungrytessy.indycarsuperfan.data
 import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore.raceWeekends
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore.seasonResults
@@ -56,17 +58,25 @@ object IndyDataStore {
 //                    Venues::class.java
 //                ).venues
 //            )
-            val network = IndyNetwork.getNetworkService(context)
-            drivers.putAll(network.getDrivers().drivers)
-            seasons.addAll(network.getSeasons().stages)
-            venues.putAll(network.getVenues().venues)
-
-            seasonResults = RaceWeekend.allSeasonsRacesFactory(seasons)
-            for (key in seasonResults.keys) {
-                val weekendsTree = seasonResults[key] ?: TreeSet()
-                for (weekend in weekendsTree) {
-                    raceWeekends[weekend.id] = weekend
+            try {
+                val network = IndyNetwork.getNetworkService(context)
+                drivers.putAll(network.getDrivers().drivers)
+                ensureActive()
+                seasons.addAll(network.getSeasons().stages)
+                ensureActive()
+                venues.putAll(network.getVenues().venues)
+                ensureActive()
+                seasonResults = RaceWeekend.allSeasonsRacesFactory(seasons)
+                for (key in seasonResults.keys) {
+                    val weekendsTree = seasonResults[key] ?: TreeSet()
+                    for (weekend in weekendsTree) {
+                        raceWeekends[weekend.id] = weekend
+                    }
                 }
+            } catch (e: Exception) {
+                // TODO: handle errors
+                // do not capture CancellationExceptions, the coroutine needs to stop when cancelled
+                if (e is CancellationException) throw e
             }
         }
     }
