@@ -4,16 +4,20 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
+import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import org.hungrytessy.indycarsuperfan.extensions.addZeroToSingleDigit
 import java.time.Duration
 import java.time.LocalDateTime
+import javax.inject.Inject
 import kotlin.math.abs
 
-class HomeViewModel(private val indyDataStore: IndyDataStore) : ViewModel() {
-
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val indyRepository: IndyRepository
+): ViewModel() {
     private val _nextRace = MutableLiveData<Stage>()
     val nextRace: LiveData<Stage> = _nextRace
 
@@ -26,14 +30,14 @@ class HomeViewModel(private val indyDataStore: IndyDataStore) : ViewModel() {
     private lateinit var timer: CountDownTimer
 
     fun fetchNextRace() {
-        indyDataStore.getNextRace()?.let { race ->
+        indyRepository.getNextRace()?.let { race ->
             _nextRace.value = race
             initTimer(race)
         }
     }
 
     fun fetchCurrentStandings() {
-        _currentStandings.value = indyDataStore.getCurrentStanding()
+        _currentStandings.value = indyRepository.getCurrentStanding()
     }
 
     private fun initTimer(race: Stage) {

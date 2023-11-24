@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivityNav
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
@@ -14,11 +17,12 @@ import org.hungrytessy.indycarsuperfan.databinding.FragmentHomeBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.DriversAdapter
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
+@AndroidEntryPoint
 class HomeFragment : IndyFragment(), OnDriverClickListener {
     // This property is only valid between onCreateView and onDestroyView.
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var adapter : DriversAdapter
 
     override fun onCreateView(
@@ -26,12 +30,12 @@ class HomeFragment : IndyFragment(), OnDriverClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this, factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return HomeViewModel(IndyDataStore) as T
-            }
-        })[HomeViewModel::class.java]
+//        homeViewModel = ViewModelProvider(this, factory = object : ViewModelProvider.Factory {
+//            @Suppress("UNCHECKED_CAST")
+//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//                return HomeViewModel(IndyDataStore) as T
+//            }
+//        })[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 

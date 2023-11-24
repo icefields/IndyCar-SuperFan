@@ -2,31 +2,66 @@ package org.hungrytessy.indycarsuperfan.data
 
 import android.content.Context
 import android.util.Log
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
-
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
-import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
-import org.hungrytessy.indycarsuperfan.data.remote.network.IndyNetwork
 import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
+import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import java.util.TreeSet
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
-object IndyDataStore {
-    val seasons: TreeSet<Season> = TreeSet()
+class IndyRepositoryImpl @Inject constructor(
+    private val api: MainNetwork
+) :  IndyRepository {
+    private val seasons: TreeSet<Season> = TreeSet()
     val drivers: HashMap<String, Driver> = HashMap()
-    val venues: HashMap<String, Venue> = HashMap()
-    val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
-    var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
+    private val venues: HashMap<String, Venue> = HashMap()
+    private val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
+    private var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
 
-    fun getNextRace(): Stage? {
+    /**
+     * call this on splash
+     */
+    override suspend fun generate() {
+        withContext(Dispatchers.IO) {
+            try {
+                drivers.putAll(api.getDrivers().drivers)
+                ensureActive()
+                seasons.addAll(api.getSeasons().stages)
+                ensureActive()
+                venues.putAll(api.getVenues().venues)
+                ensureActive()
+                seasonResults = allSeasonsRacesFactory(seasons)
+                for (key in seasonResults.keys) {
+                    val weekendsTree = seasonResults[key] ?: TreeSet()
+                    for (weekend in weekendsTree) {
+                        raceWeekends[weekend.id] = weekend
+                    }
+                }
+
+                // TODO: refactor and completely remove IndyDataStore
+                IndyDataStore.drivers.putAll(drivers)
+                IndyDataStore.seasons.addAll(seasons)
+                IndyDataStore.venues.putAll(venues)
+                IndyDataStore.seasonResults = seasonResults
+                IndyDataStore.raceWeekends.putAll(raceWeekends)
+            } catch (e: Exception) {
+                // TODO: handle errors
+                // do not capture CancellationExceptions, the coroutine needs to stop when cancelled
+                if (e is CancellationException) throw e
+            }
+        }
+    }
+
+    override fun getNextRace(): Stage? {
         for (race in seasons.last().races!!) {
             //Log.d("LUCIFER", "${race.description} STATUS ${race.stageSummary?.stages?.last()?.status}")
             if ((race.stageSummary?.stages?.last()?.status) == "Not started") {
@@ -36,7 +71,7 @@ object IndyDataStore {
         return seasons.first().races!!.first()
     }
 
-    fun getCurrentStanding(): List<CompetitorEventSummary> {
+    override fun getCurrentStanding(): List<CompetitorEventSummary> {
         // if season not started yet get previous season
         val season: Season = if (isSeasonStarted()) {
             getLatestSeason()
@@ -49,11 +84,11 @@ object IndyDataStore {
     /**
      * if the new season has no results means it's data for the upcoming season
      */
-    fun isSeasonStarted(): Boolean {
+    override fun isSeasonStarted(): Boolean {
         return getLatestSeason().seasonSummary?.competitors != null
     }
 
-    fun getResultsDriverCurrentSeason(driverId: String): CompetitorEventSummary? {
+    override fun getResultsDriverCurrentSeason(driverId: String): CompetitorEventSummary? {
         var result: CompetitorEventSummary? = null
         val seasonsList = ArrayList(seasons)
         // if season not started yet get previous season
@@ -74,7 +109,7 @@ object IndyDataStore {
         return result
     }
 
-    fun getResultsDriverAllSeasons(driverId: String): Map<Season, CompetitorEventSummary> {
+    override fun getResultsDriverAllSeasons(driverId: String): Map<Season, CompetitorEventSummary> {
         val map = LinkedHashMap<Season, CompetitorEventSummary>()
         val seasonsCopy = TreeSet<Season>()
         seasonsCopy.addAll(seasons)
@@ -99,7 +134,7 @@ object IndyDataStore {
         return map
     }
 
-    fun getUpcomingRaces(): List<Stage> {
+    override fun getUpcomingRaces(): List<Stage> {
         val list: ArrayList<Stage> = ArrayList()
         getLatestSeason().races?.let { races ->
             if (isSeasonStarted()) {
@@ -130,7 +165,7 @@ object IndyDataStore {
         return list
     }
 
-    fun getPastRaceWeekends(): List<RaceWeekend> {
+    override fun getPastRaceWeekends(): List<RaceWeekend> {
         val list = ArrayList<RaceWeekend>()
         for (stage in getPastRaces()) {
             raceWeekends[stage.id]?.let { list.add(it) }
@@ -138,7 +173,7 @@ object IndyDataStore {
         return list
     }
 
-    fun getCurrentSeasonFinishedRaces(): List<Stage> {
+    override fun getCurrentSeasonFinishedRaces(): List<Stage> {
         val races: TreeSet<Stage> = TreeSet()
         if (isSeasonStarted()) {
             races.addAll(getLatestSeason().races ?: ArrayList())
@@ -150,20 +185,20 @@ object IndyDataStore {
         return ArrayList(races).reversed()
     }
 
-    fun getPreviousSeason(): Season {
+    override fun getPreviousSeason(): Season {
         val seasonsList = ArrayList(seasons)
         return seasonsList[seasonsList.size - 2]
     }
 
-    fun getLatestSeason(): Season = seasons.last()
+    override fun getLatestSeason(): Season = seasons.last()
 
-    fun getSingleRace(raceId: String): RaceWeekend? {
+    override fun getSingleRace(raceId: String): RaceWeekend? {
         return raceWeekends[raceId]
     }
 
-    fun getRaceResults(raceId: String): RaceWeekend? = raceWeekends[raceId]
+    override fun getRaceResults(raceId: String): RaceWeekend? = raceWeekends[raceId]
 
-    fun getPastWinners(venue: Venue): Map<String, Driver> {
+    override fun getPastWinners(venue: Venue): Map<String, Driver> {
         val winners = LinkedHashMap<String, Driver>()
         for(season in seasons) {
             seasonResults[season]?.let { races ->

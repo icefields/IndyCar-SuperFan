@@ -7,11 +7,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.MainNavDirections
 import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.databinding.ActivityMainBinding
 import org.hungrytessy.indycarsuperfan.extensions.navController
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityNav {
 
     private lateinit var binding: ActivityMainBinding

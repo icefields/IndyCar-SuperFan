@@ -3,17 +3,27 @@ package org.hungrytessy.indycarsuperfan.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
 import org.hungrytessy.indycarsuperfan.extensions.isDarkModeOn
 
 const val FORCE_NIGHT_MODE = true
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+    private val viewModel: SplashViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.dataReady.observe(this) { goToMain() }
+
         // this version only supports night mode
         if (FORCE_NIGHT_MODE) {
             forceNightMode()
@@ -25,13 +35,10 @@ class SplashActivity : AppCompatActivity() {
         // avoid making network calls twice when refreshing the screen after forcing dark mode
         if (!FORCE_NIGHT_MODE || FORCE_NIGHT_MODE && isDarkModeOn()) {
             lifecycleScope.launch {
-                IndyDataStore.generate(applicationContext)
-                //Handler(Looper.getMainLooper()).postDelayed(this@SplashActivity::goToMain, 50)
-                goToMain()
+                viewModel.generate()
             }
         }
     }
-
 
     private fun forceNightMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
