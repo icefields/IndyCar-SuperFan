@@ -13,7 +13,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <org.hungrytessy.indycarsuperfan.ui.IndyBottomNavigationView
+    <org.hungrytessy.indycarsuperfan.presentation.IndyBottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,12 +37,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line"
         app:navGraph="@navigation/mobile_navigation" />
-
-<!--    <include android:id="@+id/lineBottom"-->
-<!--        layout="@layout/view_line"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/nav_view"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"/>-->
 
     <View
         android:id="@+id/lineBottom"

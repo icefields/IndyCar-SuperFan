@@ -3,9 +3,6 @@ package org.hungrytessy.indycarsuperfan.data.remote.network
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Drivers
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Seasons
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venues
-import org.hungrytessy.indycarsuperfan.network.PATH_DRIVERS
-import org.hungrytessy.indycarsuperfan.network.PATH_SEASONS
-import org.hungrytessy.indycarsuperfan.network.PATH_VENUES
 import retrofit2.http.GET
 
 /**

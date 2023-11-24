@@ -6,22 +6,23 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
+import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
 
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
-import org.hungrytessy.indycarsuperfan.data.remote.dto.indy.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.data.remote.network.IndyNetwork
 import java.util.TreeSet
 
 object IndyDataStore {
-    val seasons: TreeSet<Season> = TreeSet()
+    private val seasons: TreeSet<Season> = TreeSet()
     val drivers: HashMap<String, Driver> = HashMap()
-    val venues: HashMap<String, Venue> = HashMap()
-    val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
-    var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
+    private val venues: HashMap<String, Venue> = HashMap()
+    private val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
+    private var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
 
     /**
      * call this on splash
@@ -56,7 +57,7 @@ object IndyDataStore {
                 ensureActive()
                 venues.putAll(network.getVenues().venues)
                 ensureActive()
-                seasonResults = RaceWeekend.allSeasonsRacesFactory(seasons)
+                seasonResults = allSeasonsRacesFactory(seasons)
                 for (key in seasonResults.keys) {
                     val weekendsTree = seasonResults[key] ?: TreeSet()
                     for (weekend in weekendsTree) {
