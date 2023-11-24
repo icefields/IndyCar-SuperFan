@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.extensions.getAssetUrlBigNumber
-import org.hungrytessy.indycarsuperfan.extensions.getFlagDrawable
+import org.hungrytessy.indycarsuperfan.common.getAssetUrlBigNumber
+import org.hungrytessy.indycarsuperfan.common.getFlagDrawable
 
 open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val driverImage : ImageView = itemView.findViewById(R.id.driverImg)

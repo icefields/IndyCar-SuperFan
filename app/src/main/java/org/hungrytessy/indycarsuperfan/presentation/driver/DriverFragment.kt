@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.databinding.FragmentDriverBinding
-import org.hungrytessy.indycarsuperfan.extensions.getFlagDrawable
-import org.hungrytessy.indycarsuperfan.extensions.loadDriverImage
+import org.hungrytessy.indycarsuperfan.common.getFlagDrawable
+import org.hungrytessy.indycarsuperfan.common.loadDriverImage
 
 private const val ARG_DRIVER_ID = "driver_id"
 

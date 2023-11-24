@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.MainNavDirections
 import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.databinding.ActivityMainBinding
-import org.hungrytessy.indycarsuperfan.extensions.navController
+import org.hungrytessy.indycarsuperfan.common.navController
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityNav {

@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.extensions
+package org.hungrytessy.indycarsuperfan.common
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -124,9 +124,9 @@ fun replacePlaceholder(type: AssetImageType, name: String): String {
 }
 
 enum class AssetImageType(val type: String) {
-    NUMBER_S("images/numbers/${PLACEHOLDER}.png"),
+    NUMBER_S("images/numbers/$PLACEHOLDER.png"),
     NUMBER_M("images/numbers/${PLACEHOLDER}M.png"),
-    HEADSHOT("images/headshots/Img_${PLACEHOLDER}.png")
+    HEADSHOT("images/headshots/Img_$PLACEHOLDER.png")
 }
 
 fun BaseStage.getTrackDrawable(): Int {

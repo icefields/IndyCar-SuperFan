@@ -1,5 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data.remote.network
 
+import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Drivers
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Seasons
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venues

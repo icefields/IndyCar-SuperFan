@@ -9,7 +9,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
 
-import org.hungrytessy.indycarsuperfan.extensions.readStringAsset
+import org.hungrytessy.indycarsuperfan.common.readStringAsset
 import java.lang.ref.WeakReference
 
 class AssetsNetworkInterceptor(context: Context): Interceptor {

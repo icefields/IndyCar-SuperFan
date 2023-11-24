@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
-import org.hungrytessy.indycarsuperfan.extensions.addZeroToSingleDigit
+import org.hungrytessy.indycarsuperfan.common.addZeroToSingleDigit
 import java.time.Duration
 import java.time.LocalDateTime
 import javax.inject.Inject

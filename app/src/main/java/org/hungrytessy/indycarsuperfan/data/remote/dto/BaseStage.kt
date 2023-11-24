@@ -1,7 +1,7 @@
 package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
-import org.hungrytessy.indycarsuperfan.extensions.isoZonedDateToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.ZoneId

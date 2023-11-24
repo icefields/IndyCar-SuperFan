@@ -9,8 +9,8 @@ import com.prof18.rssparser.model.RssChannel
 import com.prof18.rssparser.model.RssItem
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
-import org.hungrytessy.indycarsuperfan.extensions.isoZonedDateToLocalDateTime
-import org.hungrytessy.indycarsuperfan.extensions.rssDateStringToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.TreeSet

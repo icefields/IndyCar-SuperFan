@@ -10,7 +10,7 @@ import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceResultsBinding
-import org.hungrytessy.indycarsuperfan.extensions.getTrackDrawable
+import org.hungrytessy.indycarsuperfan.common.getTrackDrawable
 import java.util.TreeSet
 
 private const val ARG_RACE_ID = "race_id"

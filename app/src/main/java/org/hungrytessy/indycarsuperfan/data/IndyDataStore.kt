@@ -1,12 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data
 
-import android.content.Context
 import android.util.Log
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ensureActive
-import kotlinx.coroutines.withContext
-import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
 
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
@@ -14,10 +8,7 @@ import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
-import org.hungrytessy.indycarsuperfan.data.remote.network.IndyNetwork
-import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
 import java.util.TreeSet
-import javax.inject.Inject
 
 object IndyDataStore {
     val seasons: TreeSet<Season> = TreeSet()

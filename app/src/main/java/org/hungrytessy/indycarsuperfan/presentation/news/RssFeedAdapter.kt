@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.extensions.isoZonedDateToLocalDateTime
-import org.hungrytessy.indycarsuperfan.extensions.rssDateStringToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 
 class RssFeedAdapter (private val items: List<RssItem>) : RecyclerView.Adapter<RssFeedAdapter.RssViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RssViewHolder =

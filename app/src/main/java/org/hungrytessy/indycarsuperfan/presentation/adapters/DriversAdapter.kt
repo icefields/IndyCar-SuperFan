@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
-import org.hungrytessy.indycarsuperfan.extensions.loadDriverImage
+import org.hungrytessy.indycarsuperfan.common.loadDriverImage
 
 class DriversAdapter(
     private val driverList : List<CompetitorEventSummary>,
