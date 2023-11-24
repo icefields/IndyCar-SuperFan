@@ -4,24 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.databinding.FragmentFutureracesBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnRaceClickListener
 import org.hungrytessy.indycarsuperfan.presentation.adapters.ScheduleAdapter
 
+@AndroidEntryPoint
 class FutureRacesFragment : IndyFragment(), OnRaceClickListener {
-    private lateinit var resultsViewModel: FutureRacesViewModel
+    private val resultsViewModel: FutureRacesViewModel by viewModels()
     private var _binding: FragmentFutureracesBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : ScheduleAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        resultsViewModel = ViewModelProvider(this)[FutureRacesViewModel::class.java]
         _binding = FragmentFutureracesBinding.inflate(inflater, container, false)
         initObservables()
-        resultsViewModel.fetchFutureRaces()
         return binding.root
     }
 

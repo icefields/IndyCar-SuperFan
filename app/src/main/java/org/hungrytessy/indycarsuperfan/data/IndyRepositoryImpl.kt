@@ -1,10 +1,18 @@
 package org.hungrytessy.indycarsuperfan.data
 
-import android.content.Context
 import android.util.Log
+import com.prof18.rssparser.RssParserBuilder
+import com.prof18.rssparser.model.RssChannel
+import com.prof18.rssparser.model.RssItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import org.hungrytessy.indycarsuperfan.common.RSS_MOTORSPORT
+import org.hungrytessy.indycarsuperfan.common.RSS_YOUTUBE
+import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
+import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
 import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
@@ -12,8 +20,10 @@ import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
+import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
+import java.time.LocalDateTime
 import java.util.TreeSet
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
@@ -59,6 +69,47 @@ class IndyRepositoryImpl @Inject constructor(
                 if (e is CancellationException) throw e
             }
         }
+    }
+
+    override suspend fun fetchNews(): List<IndyRssItem> {
+        // TODO abstract the rss parser and inject
+        val rssParser = RssParserBuilder(callFactory = OkHttpClient(), charset = Charsets.UTF_8,).build()
+        val rssMotorsports: RssChannel = rssParser.getRssChannel(RSS_MOTORSPORT)
+        val rssYoutube: RssChannel = rssParser.getRssChannel(RSS_YOUTUBE)
+
+        val allRssTree: TreeSet<RssItem> = TreeSet { o1, o2 ->
+            val date1 = try {
+                o1.pubDate!!.isoZonedDateToLocalDateTime()
+            } catch (e: Exception) {
+                try {
+                    rssDateStringToLocalDateTime(o1.pubDate!!)
+                } catch (e: Exception) {
+                    LocalDateTime.now()
+                }
+            }
+
+            val date2 = try {
+                o2.pubDate!!.isoZonedDateToLocalDateTime()
+            } catch (e: Exception) {
+                try {
+                    rssDateStringToLocalDateTime(o2.pubDate!!)
+                } catch (e: Exception) {
+                    LocalDateTime.now()
+                }
+            }
+
+            if (date1.isBefore(date2)) {
+                1;
+            } else if (date1.isAfter(date2)) {
+                -1;
+            } else {
+                0
+            }
+
+        }
+        allRssTree.addAll(rssMotorsports.items)
+        allRssTree.addAll(rssYoutube.items)
+        return ArrayList(allRssTree).map { it.toIndyRssItem() }
     }
 
     override fun getNextRace(): Stage? {

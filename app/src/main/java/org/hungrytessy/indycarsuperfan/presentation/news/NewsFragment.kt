@@ -4,21 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.databinding.FragmentNewsBinding
 
+@AndroidEntryPoint
 class NewsFragment : IndyFragment() {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var newsViewModel: NewsViewModel
+    private val newsViewModel: NewsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        newsViewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         initObservables()
-        newsViewModel.fetchFeed()
         return binding.root
     }
 

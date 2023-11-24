@@ -9,12 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
+import org.hungrytessy.indycarsuperfan.common.RSS_DATE_FORMAT
 import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
+import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 
-class RssFeedAdapter (private val items: List<RssItem>) : RecyclerView.Adapter<RssFeedAdapter.RssViewHolder>() {
+class RssFeedAdapter (private val items: List<IndyRssItem>) : RecyclerView.Adapter<RssFeedAdapter.RssViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RssViewHolder =
         RssViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_rss, parent, false))
     override fun onBindViewHolder(viewHolder: RssViewHolder, position: Int) =
@@ -28,7 +29,7 @@ class RssFeedAdapter (private val items: List<RssItem>) : RecyclerView.Adapter<R
         private val rssImage = itemView.findViewById<ImageView>(R.id.rssImage)
         private val dateTxt = itemView.findViewById<TextView>(R.id.dateTxt)
 
-        fun bind(rssItem: RssItem) {
+        fun bind(rssItem: IndyRssItem) {
             titleTxt.text = rssItem.title
             rssItem.description?.let {
                 subtitleTxt.visibility = View.VISIBLE

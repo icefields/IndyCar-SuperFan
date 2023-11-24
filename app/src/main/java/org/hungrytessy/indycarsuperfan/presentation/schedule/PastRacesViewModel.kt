@@ -3,19 +3,25 @@ package org.hungrytessy.indycarsuperfan.presentation.schedule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
+import javax.inject.Inject
 
-class PastRacesViewModel : ViewModel() {
 
+@HiltViewModel
+class PastRacesViewModel @Inject constructor(
+    private val indyRepository: IndyRepository
+): ViewModel() {
     private val _pastRaces = MutableLiveData<List<RaceWeekend>>()
     val pastRaces: LiveData<List<RaceWeekend>> = _pastRaces
 
-    fun fetchPastRaces() {
-        val list = IndyDataStore.getPastRaceWeekends()
-//        for (stage in list) {
-//            //stage.stageSummary?.competitors = IndyDataStore.raceWeekends[stage.id]?.race?.result
-//        }
-        _pastRaces.value = list
+    init {
+        viewModelScope.launch {
+            val list = indyRepository.getPastRaceWeekends()
+            _pastRaces.value = list
+        }
     }
 }

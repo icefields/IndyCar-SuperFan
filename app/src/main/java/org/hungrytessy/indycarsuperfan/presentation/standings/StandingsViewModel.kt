@@ -1,4 +1,4 @@
-package org.hungrytessy.indycarsuperfan.presentation.schedule
+package org.hungrytessy.indycarsuperfan.presentation.standings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,21 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class ScheduleViewModel @Inject constructor(
+class StandingsViewModel @Inject constructor(
     private val indyRepository: IndyRepository
 ): ViewModel() {
-    private val _futureRaces = MutableLiveData<List<Stage>>()
-    val futureRaces: LiveData<List<Stage>> = _futureRaces
+    private val _currentStandings = MutableLiveData<List<CompetitorEventSummary>>()
+    val currentStandings: LiveData<List<CompetitorEventSummary>> = _currentStandings
 
-    fun fetchFutureRaces() {
+    init {
         viewModelScope.launch {
-            _futureRaces.value = indyRepository.getUpcomingRaces()
+            _currentStandings.value = indyRepository.getCurrentStanding()
         }
     }
 }

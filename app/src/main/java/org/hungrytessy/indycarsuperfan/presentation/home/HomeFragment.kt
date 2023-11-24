@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivityNav
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
 import org.hungrytessy.indycarsuperfan.databinding.FragmentHomeBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.DriversAdapter
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
@@ -30,13 +26,6 @@ class HomeFragment : IndyFragment(), OnDriverClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        homeViewModel = ViewModelProvider(this, factory = object : ViewModelProvider.Factory {
-//            @Suppress("UNCHECKED_CAST")
-//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//                return HomeViewModel(IndyDataStore) as T
-//            }
-//        })[HomeViewModel::class.java]
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.viewAll.setOnClickListener {
@@ -50,11 +39,6 @@ class HomeFragment : IndyFragment(), OnDriverClickListener {
         homeViewModel.fetchCurrentStandings()
 
         return binding.root
-    }
-
-    private fun test() {
-        //Log.d("LUCIFER", "${ArrayList(RaceWeekend.seasonRacesFactory(IndyDataStore.getPreviousSeason()))[4].race?.description}")
-        //Log.d("LUCIFER", "${ArrayList(RaceWeekend.seasonRacesFactory(IndyDataStore.getPreviousSeason()))[4].qualification?.qualificationStages?.first()?.result?.first()?.result?.carNumber}")
     }
 
     private fun initObservables() {
@@ -83,4 +67,13 @@ class HomeFragment : IndyFragment(), OnDriverClickListener {
         homeViewModel.cleanup()
         _binding = null
     }
+
+//    private fun initViewModel() {
+//        homeViewModel = ViewModelProvider(this, factory = object : ViewModelProvider.Factory {
+//            @Suppress("UNCHECKED_CAST")
+//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//                return HomeViewModel(IndyDataStore) as T
+//            }
+//        })[HomeViewModel::class.java]
+//    }
 }

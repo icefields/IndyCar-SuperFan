@@ -1,6 +1,8 @@
 package org.hungrytessy.indycarsuperfan.di
 
 import android.content.Context
+import com.prof18.rssparser.RssParser
+import com.prof18.rssparser.RssParserBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,17 +47,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(api: MainNetwork): IndyRepository = IndyRepositoryImpl(api)
-}
+    fun provideIndyRepository(api: MainNetwork): IndyRepository = IndyRepositoryImpl(api)
 
-
-object IndyNetwork {
-    private var service: MainNetwork? = null
-
-    fun getNetworkService(context: Context): MainNetwork {
-        if (service == null) {
-
-        }
-        return service!!
-    }
+    @Provides
+    @Singleton
+    fun provideRssParser(): RssParser = RssParserBuilder(callFactory = OkHttpClient(), charset = Charsets.UTF_8,).build()
 }

@@ -5,8 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
@@ -16,15 +17,15 @@ import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListen
 
 private const val ARG_RACE_ID = "race_id"
 
+@AndroidEntryPoint
 class SingleRaceScheduleFragment : IndyFragment(), OnDriverClickListener {
-    private lateinit var viewModel: SingleRaceScheduleViewModel
+    private val viewModel: SingleRaceScheduleViewModel by viewModels()
     private var _binding: FragmentSingleRaceScheduleBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RaceWeekendScheduleAdapter
     private lateinit var pastWinnersAdapter: PastWinnersAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewModel = ViewModelProvider(this)[SingleRaceScheduleViewModel::class.java]
         arguments?.getString(ARG_RACE_ID)?.let { raceId -> viewModel.initialize(raceId) }
         _binding = FragmentSingleRaceScheduleBinding.inflate(inflater, container, false)
         return binding.root

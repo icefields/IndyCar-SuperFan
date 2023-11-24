@@ -5,20 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.databinding.FragmentScheduleBinding
 
+@AndroidEntryPoint
 class ScheduleFragment : IndyFragment() {
-    private lateinit var scheduleViewModel: ScheduleViewModel
+    private val scheduleViewModel: ScheduleViewModel by viewModels()
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
     private lateinit var resultsAdapter: SchedulePagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        scheduleViewModel = ViewModelProvider(this)[ScheduleViewModel::class.java]
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
         return binding.root
     }

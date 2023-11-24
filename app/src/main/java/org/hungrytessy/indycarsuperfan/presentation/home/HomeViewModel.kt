@@ -46,7 +46,6 @@ class HomeViewModel @Inject constructor(
             override fun onTick(millisUntilFinished: Long) {
                 val duration: Duration = Duration.between(LocalDateTime.now(), race.getScheduled()).abs()
                 _countdownString.value = "${duration.toDaysPart()}d ${duration.toHoursPart()}:${duration.toMinutesPart().addZeroToSingleDigit()}:${duration.toSecondsPart().addZeroToSingleDigit()}"
-                //_binding?.countdownText?.text = countdownStr
             }
 
             override fun onFinish() {}

@@ -5,6 +5,7 @@ import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
+import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 
 interface IndyRepository {
@@ -22,4 +23,5 @@ interface IndyRepository {
     fun isSeasonStarted(): Boolean
     fun getCurrentStanding(): List<CompetitorEventSummary>
     fun getNextRace(): Stage?
+    suspend fun fetchNews(): List<IndyRssItem>
 }

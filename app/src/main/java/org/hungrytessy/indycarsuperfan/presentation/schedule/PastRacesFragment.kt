@@ -4,24 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.databinding.FragmentPastracesBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnRaceClickListener
 
-
+@AndroidEntryPoint
 class PastRacesFragment : IndyFragment(), OnRaceClickListener, OnDriverClickListener {
-    private lateinit var resultsViewModel: PastRacesViewModel
+    private val resultsViewModel: PastRacesViewModel by viewModels()
     private var _binding: FragmentPastracesBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : PastRacesExpandableListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        resultsViewModel = ViewModelProvider(this)[PastRacesViewModel::class.java]
         _binding = FragmentPastracesBinding.inflate(inflater, container, false)
         initObservables()
-        resultsViewModel.fetchPastRaces()
         return binding.root
     }
 

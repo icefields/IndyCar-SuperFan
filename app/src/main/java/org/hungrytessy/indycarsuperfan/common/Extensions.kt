@@ -18,9 +18,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import java.io.IOException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -175,3 +177,18 @@ fun Driver.getFlagDrawable(): Int = when((competitor?.nationality ?: "").lowerca
     "switzerland" -> R.drawable.flag_switzerland
     else -> R.drawable.ic_menu_drivers
 }
+
+fun RssItem.toIndyRssItem() = IndyRssItem(
+    guid = guid,
+    title = title,
+    author = author,
+    link = link,
+    pubDate = pubDate,
+    description = description,
+    content = content,
+    image = image,
+    video = video,
+    sourceName = sourceName,
+    sourceUrl = sourceUrl,
+    categories = categories
+)
