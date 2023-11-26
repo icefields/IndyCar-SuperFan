@@ -3,12 +3,19 @@ package org.hungrytessy.indycarsuperfan.presentation.driver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
+import javax.inject.Inject
 
-class DriverViewModel : ViewModel() {
+@HiltViewModel
+class DriverViewModel @Inject constructor(
+    val repository: IndyRepository
+) : ViewModel() {
 
     private val _driver = MutableLiveData<Driver>()
     val driver: LiveData<Driver> = _driver
@@ -20,8 +27,10 @@ class DriverViewModel : ViewModel() {
     val driverResultsCurrentSeasons: LiveData<CompetitorEventSummary?> = _driverResultsCurrentSeasons
 
     fun initialize(id: String) {
-        _driver.value = IndyDataStore.drivers[id]
-        _driverResultsAll.value = IndyDataStore.getResultsDriverAllSeasons(id)
-        _driverResultsCurrentSeasons.value = IndyDataStore.getResultsDriverCurrentSeason(id)
+        viewModelScope.launch {
+            _driver.value = repository.getDrivers()[id]
+            _driverResultsAll.value = repository.getResultsDriverAllSeasons(id)
+            _driverResultsCurrentSeasons.value = repository.getResultsDriverCurrentSeason(id)
+        }
     }
 }

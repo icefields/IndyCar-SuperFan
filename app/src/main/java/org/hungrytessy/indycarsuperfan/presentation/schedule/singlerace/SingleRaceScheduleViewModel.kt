@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
@@ -32,7 +31,7 @@ class SingleRaceScheduleViewModel @Inject constructor(
             _raceWeekend.value = raceWeekend
             raceWeekend?.venue?.let {
                 _venue.value = it
-                _pastWinners.value = IndyDataStore.getPastWinners(it)
+                _pastWinners.value = indyRepository.getPastWinners(it)
             }
         }
     }

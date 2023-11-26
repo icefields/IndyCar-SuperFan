@@ -5,11 +5,14 @@ import com.prof18.rssparser.RssParserBuilder
 import com.prof18.rssparser.model.RssChannel
 import com.prof18.rssparser.model.RssItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import okio.IOException
 import org.hungrytessy.indycarsuperfan.common.RSS_MOTORSPORT
 import org.hungrytessy.indycarsuperfan.common.RSS_YOUTUBE
+import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
@@ -23,16 +26,19 @@ import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
+import retrofit2.HttpException
 import java.time.LocalDateTime
 import java.util.TreeSet
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.coroutines.cancellation.CancellationException
 
+@Singleton
 class IndyRepositoryImpl @Inject constructor(
     private val api: MainNetwork
 ) :  IndyRepository {
     private val seasons: TreeSet<Season> = TreeSet()
-    val drivers: HashMap<String, Driver> = HashMap()
+    private val drivers: HashMap<String, Driver> = HashMap()
     private val venues: HashMap<String, Venue> = HashMap()
     private val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
     private var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
@@ -40,36 +46,52 @@ class IndyRepositoryImpl @Inject constructor(
     /**
      * call this on splash
      */
-    override suspend fun generate() {
-        withContext(Dispatchers.IO) {
+    override suspend fun generate(): Resource<Boolean> {
+        return withContext(Dispatchers.IO) {
             try {
-                drivers.putAll(api.getDrivers().drivers)
+                val driversResult = async { api.getDrivers() }
+                val seasonsResult = async { api.getSeasons() }
+                val venuesResult = async { api.getVenues() }
+
+                driversResult.await().drivers.let {
+                    drivers.putAll(it)
+                    IndyDataStore.drivers.putAll(it)
+                }
+
                 ensureActive()
-                seasons.addAll(api.getSeasons().stages)
-                ensureActive()
-                venues.putAll(api.getVenues().venues)
-                ensureActive()
-                seasonResults = allSeasonsRacesFactory(seasons)
-                for (key in seasonResults.keys) {
-                    val weekendsTree = seasonResults[key] ?: TreeSet()
-                    for (weekend in weekendsTree) {
-                        raceWeekends[weekend.id] = weekend
+
+                seasonsResult.await().let {
+                    seasons.addAll(it.stages)
+
+                    seasonResults = allSeasonsRacesFactory(seasons)
+                    for (key in seasonResults.keys) {
+                        val weekendsTree = seasonResults[key] ?: TreeSet()
+                        for (weekend in weekendsTree) {
+                            raceWeekends[weekend.id] = weekend
+                        }
                     }
                 }
 
-                // TODO: refactor and completely remove IndyDataStore
-                IndyDataStore.drivers.putAll(drivers)
-                IndyDataStore.seasons.addAll(seasons)
-                IndyDataStore.venues.putAll(venues)
-                IndyDataStore.seasonResults = seasonResults
-                IndyDataStore.raceWeekends.putAll(raceWeekends)
-            } catch (e: Exception) {
-                // TODO: handle errors
+                ensureActive()
+
+                venuesResult.await().let {
+                    venues.putAll(it.venues)
+                }
+
+                Resource.Success(true)
+            } catch (e: IOException) {
+                Resource.Error(exception = e)
+            } catch (e: HttpException) {
+                Resource.Error(exception = e)
+            }  catch (e: Exception) {
                 // do not capture CancellationExceptions, the coroutine needs to stop when cancelled
                 if (e is CancellationException) throw e
+                Resource.Error(exception = e)
             }
         }
     }
+
+    override suspend fun getDrivers(): HashMap<String, Driver> = drivers
 
     override suspend fun fetchNews(): List<IndyRssItem> {
         // TODO abstract the rss parser and inject

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
+import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import javax.inject.Inject
 
@@ -19,8 +19,12 @@ class SplashViewModel @Inject constructor(
 
     fun generate() {
         viewModelScope.launch {
-            indyRepository.generate()
-            _dataReady.value = true
+            when (indyRepository.generate()) {
+                // TODO: handle error and loading
+                is Resource.Success -> _dataReady.value = true
+                is Resource.Error -> Unit
+                is Resource.Loading -> Unit
+            }
         }
     }
 }

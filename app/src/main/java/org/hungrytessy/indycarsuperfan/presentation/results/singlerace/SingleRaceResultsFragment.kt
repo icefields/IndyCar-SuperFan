@@ -1,11 +1,12 @@
 package org.hungrytessy.indycarsuperfan.presentation.results.singlerace
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
@@ -15,14 +16,14 @@ import java.util.TreeSet
 
 private const val ARG_RACE_ID = "race_id"
 
+@AndroidEntryPoint
 class SingleRaceResultsFragment : IndyFragment() {
-    private lateinit var viewModel: SingleRaceResultsViewModel
+    private val viewModel: SingleRaceResultsViewModel by viewModels()
     private var _binding: FragmentSingleRaceResultsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : RaceResultsPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewModel = ViewModelProvider(this)[SingleRaceResultsViewModel::class.java]
         arguments?.getString(ARG_RACE_ID)?.let { raceId -> viewModel.initialize(raceId) }
         _binding = FragmentSingleRaceResultsBinding.inflate(inflater, container, false)
         return binding.root

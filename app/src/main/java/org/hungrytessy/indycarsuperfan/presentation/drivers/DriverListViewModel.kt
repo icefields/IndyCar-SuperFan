@@ -3,22 +3,31 @@ package org.hungrytessy.indycarsuperfan.presentation.drivers
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
+import javax.inject.Inject
 
-
-class DriverListViewModel : ViewModel() {
+@HiltViewModel
+class DriverListViewModel @Inject constructor(
+    val repository: IndyRepository
+) : ViewModel() {
     private val _driverList = MutableLiveData<List<Driver>>()
     val driverList: LiveData<List<Driver>> = _driverList
 
-    fun fetchDrivers() {
-        val list = ArrayList<Driver>()
-        for(driverId in IndyDataStore.drivers.keys) {
-            IndyDataStore.drivers[driverId]?.let {
-                list.add(it)
+    init {
+        viewModelScope.launch {
+            val list = ArrayList<Driver>()
+            val drivers = repository.getDrivers()
+            for(driverId in drivers.keys) {
+                drivers[driverId]?.let {
+                    list.add(it)
+                }
             }
+            list.sortWith(compareBy { if (it.getTeamsString().isNotBlank()) {it.getTeamsString().lowercase()} else { "zzz${it.competitor?.name?.lowercase()}" }})
+            _driverList.value = (list)
         }
-        list.sortWith(compareBy { if (it.getTeamsString().isNotBlank()) {it.getTeamsString().lowercase()} else { "zzz${it.competitor?.name?.lowercase()}" }})
-        _driverList.value = (list)
     }
 }

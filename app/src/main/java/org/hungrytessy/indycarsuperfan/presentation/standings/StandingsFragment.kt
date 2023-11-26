@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
-import org.hungrytessy.indycarsuperfan.data.IndyDataStore
 import org.hungrytessy.indycarsuperfan.databinding.FragmentStandingsBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.DriversAdaptersSmall
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener

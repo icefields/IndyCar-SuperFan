@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.databinding.FragmentDriverBinding
@@ -14,11 +16,12 @@ import org.hungrytessy.indycarsuperfan.common.loadDriverImage
 
 private const val ARG_DRIVER_ID = "driver_id"
 
+@AndroidEntryPoint
 class DriverFragment : IndyFragment() {
     // This property is only valid between onCreateView and onDestroyView.
     private var _binding: FragmentDriverBinding? = null
     private val binding get() = _binding!!
-    private lateinit var driverViewModel: DriverViewModel
+    private val driverViewModel: DriverViewModel by viewModels()
     private lateinit var adapter : StatsCareerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +29,6 @@ class DriverFragment : IndyFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        driverViewModel = ViewModelProvider(this)[DriverViewModel::class.java]
         arguments?.getString(ARG_DRIVER_ID)?.let { driverId -> driverViewModel.initialize(driverId) }
         _binding = FragmentDriverBinding.inflate(inflater, container, false)
 

@@ -45,11 +45,7 @@ object AppModule {
     @Singleton
     fun provideIndyApi(retrofit: Retrofit): MainNetwork = retrofit.create(MainNetwork::class.java)
 
-    @Provides
-    @Singleton
-    fun provideIndyRepository(api: MainNetwork): IndyRepository = IndyRepositoryImpl(api)
-
-    @Provides
-    @Singleton
-    fun provideRssParser(): RssParser = RssParserBuilder(callFactory = OkHttpClient(), charset = Charsets.UTF_8,).build()
+//    @Provides
+//    @Singleton
+//    fun provideIndyRepository(api: MainNetwork): IndyRepository = IndyRepositoryImpl(api)
 }

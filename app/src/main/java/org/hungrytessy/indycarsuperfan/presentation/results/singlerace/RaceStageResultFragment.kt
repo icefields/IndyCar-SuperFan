@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.domain.model.QualificationStage
 import org.hungrytessy.indycarsuperfan.domain.model.Race
@@ -15,6 +17,7 @@ import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListen
 private const val ARG_RACE_ID = "race_id"
 private const val ARG_STAGE_ID = "stage_id"
 
+@AndroidEntryPoint
 class RaceStageResultFragment : IndyFragment(), OnDriverClickListener {
     companion object {
         @JvmStatic
@@ -28,11 +31,10 @@ class RaceStageResultFragment : IndyFragment(), OnDriverClickListener {
 
     private var _binding: FragmentRaceStageResultsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var raceStageResultsViewModel: RaceStageResultViewModel
+    private val raceStageResultsViewModel: RaceStageResultViewModel by viewModels()
     private lateinit var adapter : StageResultAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        raceStageResultsViewModel = ViewModelProvider(this)[RaceStageResultViewModel::class.java]
         _binding = FragmentRaceStageResultsBinding.inflate(inflater, container, false)
 
         arguments?.getString(ARG_RACE_ID)?.let { raceId ->

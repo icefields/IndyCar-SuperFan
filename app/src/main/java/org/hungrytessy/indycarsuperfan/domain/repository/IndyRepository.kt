@@ -1,5 +1,6 @@
 package org.hungrytessy.indycarsuperfan.domain.repository
 
+import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
@@ -9,7 +10,8 @@ import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 
 interface IndyRepository {
-    suspend fun generate()
+    suspend fun generate(): Resource<Boolean>
+    suspend fun getDrivers(): HashMap<String, Driver>
     fun getPastWinners(venue: Venue): Map<String, Driver>
     fun getRaceResults(raceId: String): RaceWeekend?
     fun getSingleRace(raceId: String): RaceWeekend?
