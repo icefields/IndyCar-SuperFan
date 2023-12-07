@@ -64,7 +64,7 @@ class SingleRaceScheduleFragment : IndyFragment(), OnDriverClickListener {
 
         viewModel.pastWinners.observe(viewLifecycleOwner) { pastWinners ->
             for (key in pastWinners.keys) {
-                Log.d("LUCIFER", "$key ${pastWinners[key]?.competitor?.name}")
+                Log.d("LUCIFER", "$key ${pastWinners[key]?.name}")
             }
             pastWinnersAdapter = PastWinnersAdapter(pastWinners, this)
             binding.weekendSchedulePastWinnersListView.layoutManager = LinearLayoutManager(requireContext())

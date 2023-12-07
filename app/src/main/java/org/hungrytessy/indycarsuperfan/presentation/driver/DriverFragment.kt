@@ -38,7 +38,7 @@ class DriverFragment : IndyFragment() {
 
     private fun initObservables() {
         driverViewModel.driver.observe(viewLifecycleOwner) { driver ->
-            driver.competitor?.name?.let { name ->
+            driver.name?.let { name ->
                 binding.driverNameTxt.text = name
                 if (requireActivity() is MainActivity) {
                     (requireActivity() as MainActivity).supportActionBar?.title = name

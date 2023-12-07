@@ -57,7 +57,7 @@ abstract class StageResultHolder(itemView: View): RecyclerView.ViewHolder(itemVi
 class StageResultHolderQualify(itemView: View): StageResultHolder(itemView) {
     override fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener, position: Int) {
         super.bind(currentDriver, listener, position)
-        driverNameText.text = currentDriver.driver?.competitor?.name
+        driverNameText.text = currentDriver.driver?.name
         positionText.text = "${currentDriver.result?.position}"
         pointsText.visibility = View.GONE
         driverAvgSpeed.text = "${currentDriver.result?.bestSpeed}"
@@ -72,7 +72,7 @@ class StageResultHolderQualify(itemView: View): StageResultHolder(itemView) {
 class StageResultHolderRace(itemView: View): StageResultHolder(itemView) {
     override fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener, position: Int) {
         super.bind(currentDriver, listener, position)
-        driverNameText.text = currentDriver.driver?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
+        driverNameText.text = currentDriver.driver?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         driverAvgSpeed.text = "${currentDriver.result?.avgSpeed}"
         pointsText.text = "${currentDriver.result?.points}"

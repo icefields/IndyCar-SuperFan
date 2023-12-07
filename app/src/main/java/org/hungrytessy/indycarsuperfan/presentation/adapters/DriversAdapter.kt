@@ -36,7 +36,7 @@ class DriversAdapter(
 
         fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener) {
             driverImage.loadDriverImage(currentDriver.driver)
-            driverNameText.text = currentDriver.driver?.competitor?.name
+            driverNameText.text = currentDriver.driver?.name
             positionText.text = "${currentDriver.result?.position}"
             pointsText.text = "${currentDriver.result?.points}pts"
             itemView.setOnClickListener { listener.onDriverClick(currentDriver.driver) }

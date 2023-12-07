@@ -3,6 +3,7 @@ package org.hungrytessy.indycarsuperfan.data.remote.dto
 import com.google.gson.annotations.SerializedName
 import org.hungrytessy.indycarsuperfan.data.IndyDataStore
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.domain.model.Driver
 
 data class CompetitorEventSummaryDto (
     @SerializedName("id") val id: String,

@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -21,8 +22,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.BaseStage
+import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import java.io.IOException
 import java.time.Duration
@@ -138,7 +139,7 @@ fun Context.getBitmapFromAssetsBigNumber(fileName: String): Bitmap {
  */
 fun getAssetUrlBigNumber(carNumber: Int, driver: Driver?): String {
     val carNumberStr: String = if (carNumber == 6
-        && driver?.competitor?.name?.contains("Helio") == true) {
+        && driver?.name?.contains("Helio") == true) {
         "0${carNumber}"
     } else {
         "$carNumber"
@@ -147,9 +148,10 @@ fun getAssetUrlBigNumber(carNumber: Int, driver: Driver?): String {
 }
 
 fun Driver.getAssetUrlHeadshot(): String {
-    val name = (competitor?.name ?: "").split(", ")[1].lowercase()
-    val lastName = (competitor?.name ?: "").split(", ")[0].lowercase().replace(" ", "_")
-    return "file:///android_asset/images/headshots/img_${name[0]}_${lastName}.png"
+    val firstName = (name ?: "").split(", ")[1].lowercase()
+    val lastName = (name ?: "").split(", ")[0].lowercase().replace(" ", "_")
+    Log.d("aaaa", " $name  file:///android_asset/images/headshots/img_${firstName[0]}_${lastName}.png")
+    return "file:///android_asset/images/headshots/img_${firstName[0]}_${lastName}.png"
 }
 
 enum class AssetImageType(val type: String) {
@@ -180,7 +182,7 @@ fun BaseStage.getTrackDrawable(): Int {
     return R.drawable.img_placeholder
 }
 
-fun Driver.getFlagDrawable(): Int = when((competitor?.nationality ?: "").lowercase()) {
+fun Driver.getFlagDrawable(): Int = when((nationality ?: "").lowercase()) {
     "argentina" -> R.drawable.flag_argentina
     "australia" -> R.drawable.flag_australia
     "brazil" -> R.drawable.flag_brazil

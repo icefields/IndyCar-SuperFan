@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
 class PastWinnersAdapter(private val drivers : Map<String, Driver>, private val onDriverClickListener: OnDriverClickListener): RecyclerView.Adapter<PastWinnerHolder>() {
@@ -31,7 +31,7 @@ class PastWinnerHolder(itemView: View, private val onDriverClickListener: OnDriv
 
     fun bind(year: String, driver: Driver) {
         winnerYear.text = year
-        winnerName.text = "${driver.competitor?.name}"
+        winnerName.text = "${driver.name}"
         itemView.setOnClickListener { onDriverClickListener.onDriverClick(driver) }
     }
 }

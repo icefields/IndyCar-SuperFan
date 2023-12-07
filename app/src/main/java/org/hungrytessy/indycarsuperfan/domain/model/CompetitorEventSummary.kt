@@ -1,7 +1,6 @@
 package org.hungrytessy.indycarsuperfan.domain.model
 
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventResultDto
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 
 data class CompetitorEventSummary (
     val id: String,

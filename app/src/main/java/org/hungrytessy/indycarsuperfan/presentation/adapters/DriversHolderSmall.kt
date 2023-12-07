@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.common.getAssetUrlBigNumber
 import org.hungrytessy.indycarsuperfan.common.getFlagDrawable
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
@@ -29,7 +28,7 @@ open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView)
             .into(driverImage)
 
         currentDriver.driver?.getFlagDrawable()?.let { countryImg.setImageResource(it) }
-        driverNameText.text = currentDriver.driver?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
+        driverNameText.text = currentDriver.driver?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         pointsText.text = "${currentDriver.result?.points}"
 

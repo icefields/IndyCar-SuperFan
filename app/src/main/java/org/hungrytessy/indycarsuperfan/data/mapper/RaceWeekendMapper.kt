@@ -31,12 +31,9 @@ fun allSeasonsRacesFactory(seasons: TreeSet<Season>): Map<Season, TreeSet<RaceWe
     return map
 }
 
-private fun competitorsDtoToCompetitors(dtoTree: TreeSet<CompetitorEventSummaryDto>?): TreeSet<CompetitorEventSummary>? {
-    return dtoTree?.let { dtoList ->
-        TreeSet(dtoList.map { it.toCompetitorEventSummary() })
-    } ?: run {
-        TreeSet()
-    }
+private fun competitorsDtoToCompetitors(dtoTree: TreeSet<CompetitorEventSummaryDto>?)
+: TreeSet<CompetitorEventSummary>? = dtoTree?.let { dtoList ->
+    TreeSet(dtoList.map { it.toCompetitorEventSummary() })
 }
 
 private fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend> {

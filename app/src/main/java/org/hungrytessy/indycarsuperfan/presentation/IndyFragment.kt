@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.domain.model.Driver
 
 abstract class IndyFragment : Fragment() {
 
@@ -32,7 +32,7 @@ abstract class IndyFragment : Fragment() {
 
     open fun onDriverClick(driver: Driver?) {
         if (activity is MainActivityNav) {
-            driver?.competitor?.id?.let { (activity as MainActivityNav).goToDriverProfile(it) }
+            driver?.id?.let { (activity as MainActivityNav).goToDriverProfile(it) }
         }
     }
 }

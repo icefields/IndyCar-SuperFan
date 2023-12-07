@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.common.getFlagDrawable
 import org.hungrytessy.indycarsuperfan.common.loadDriverImage
+import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
 class DriverListAdapter(
@@ -38,7 +38,7 @@ class DriverListAdapter(
         private val teamText : TextView = itemView.findViewById(R.id.driverTeam)
 
         fun bind(currentDriver: Driver, listener: OnDriverClickListener) {
-            driverNameText.text = currentDriver.competitor?.name
+            driverNameText.text = currentDriver.name
 
             countryImg.setImageResource(currentDriver.getFlagDrawable())
             itemView.setOnClickListener { listener.onDriverClick(currentDriver) }
