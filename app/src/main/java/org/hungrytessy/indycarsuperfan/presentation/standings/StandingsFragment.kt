@@ -11,7 +11,6 @@ import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.databinding.FragmentStandingsBinding
 import org.hungrytessy.indycarsuperfan.presentation.adapters.DriversAdaptersSmall
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
-import org.hungrytessy.indycarsuperfan.presentation.home.HomeViewModel
 
 @AndroidEntryPoint
 class StandingsFragment : IndyFragment(), OnDriverClickListener {

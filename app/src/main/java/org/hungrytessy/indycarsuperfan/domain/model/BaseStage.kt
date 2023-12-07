@@ -1,6 +1,6 @@
-package org.hungrytessy.indycarsuperfan.data.remote.dto
+package org.hungrytessy.indycarsuperfan.domain.model
 
-import com.google.gson.annotations.SerializedName
+
 import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
@@ -9,12 +9,13 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 abstract class BaseStage: Comparable<BaseStage> {
-    @SerializedName("id") lateinit var id: String
-    @SerializedName("description") var description: String? = null
-    @SerializedName("scheduled") var scheduled: String? = null
-    @SerializedName("scheduled_end") var scheduledEnd: String? = null
-    @SerializedName("single_event") var singleEvent: Boolean = true
-    @SerializedName("type") lateinit var type: String
+    lateinit var id: String
+    var description: String? = null
+    var scheduled: String? = null
+    var scheduledEnd: String? = null
+    var singleEvent: Boolean = true
+    lateinit var type: String
+    var stageName: String = ""
 
     fun getScheduled(): LocalDateTime {
         val offsetDate = OffsetDateTime.of(scheduled?.let { it.isoZonedDateToLocalDateTime() }?: LocalDateTime.now(), ZoneOffset.UTC)
@@ -44,19 +45,5 @@ abstract class BaseStage: Comparable<BaseStage> {
         } else {
             return id.compareTo(other.id)
         }
-    }
-
-    fun getStageName(textWrap: Boolean = false): String {
-        return ("Qualifying" +
-                if (textWrap) {"\n"} else {" "} +
-                description?.let {
-            when (it) {
-                "Q1" -> "Group 1"
-                "Q2" -> "Group 2"
-                "Q3" -> "Round 2"
-                "Q4" -> "Fast6"
-                else -> it
-            }
-        }) ?: run { "ERROR" }
     }
 }

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.common.loadDriverImage
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 
 class DriversAdapter(
     private val driverList : List<CompetitorEventSummary>,
@@ -35,11 +35,11 @@ class DriversAdapter(
         private val pointsText : TextView = itemView.findViewById(org.hungrytessy.indycarsuperfan.R.id.driverPoints)
 
         fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener) {
-            driverImage.loadDriverImage(currentDriver.getDriver())
-            driverNameText.text = currentDriver.getDriver()?.competitor?.name
+            driverImage.loadDriverImage(currentDriver.driver)
+            driverNameText.text = currentDriver.driver?.competitor?.name
             positionText.text = "${currentDriver.result?.position}"
             pointsText.text = "${currentDriver.result?.points}pts"
-            itemView.setOnClickListener { listener.onDriverClick(currentDriver.getDriver()) }
+            itemView.setOnClickListener { listener.onDriverClick(currentDriver.driver) }
         }
     }
 }

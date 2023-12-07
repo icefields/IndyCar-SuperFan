@@ -1,7 +1,9 @@
 package org.hungrytessy.indycarsuperfan.data.mapper
 
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.toCompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Practice
 import org.hungrytessy.indycarsuperfan.domain.model.Qualification
 import org.hungrytessy.indycarsuperfan.domain.model.QualificationStage
@@ -9,12 +11,12 @@ import org.hungrytessy.indycarsuperfan.domain.model.Race
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import java.util.TreeSet
 
-private fun removeUnqualified(summary: TreeSet<CompetitorEventSummary>?): TreeSet<CompetitorEventSummary> {
+private fun removeUnqualified(summary: TreeSet<CompetitorEventSummaryDto>?): TreeSet<CompetitorEventSummary> {
     val sanitized = TreeSet<CompetitorEventSummary>()
     summary?.let {
         for (driverResult in it) {
             if (driverResult.result?.position != null ) {
-                sanitized.add(driverResult)
+                sanitized.add(driverResult.toCompetitorEventSummary())
             }
         }
     }
@@ -29,7 +31,15 @@ fun allSeasonsRacesFactory(seasons: TreeSet<Season>): Map<Season, TreeSet<RaceWe
     return map
 }
 
-fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend> {
+private fun competitorsDtoToCompetitors(dtoTree: TreeSet<CompetitorEventSummaryDto>?): TreeSet<CompetitorEventSummary>? {
+    return dtoTree?.let { dtoList ->
+        TreeSet(dtoList.map { it.toCompetitorEventSummary() })
+    } ?: run {
+        TreeSet()
+    }
+}
+
+private fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend> {
     val allSeasonRaces = TreeSet<RaceWeekend>()
     // from season grab every stage (race)
     season.races?.let { races ->
@@ -43,24 +53,28 @@ fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend> {
                     // every stage is a practice, race or qualify
                     when(singleRaceStage.type) {
                         "practice" -> {
-                            val practice: Practice = Practice()
-                            practice.status = singleRaceStage.stageSummary?.status
-                            practice.result = singleRaceStage.stageSummary?.competitors
-                            practice.id = singleRaceStage.id
-                            practice.description = singleRaceStage.description
-                            practice.scheduled = singleRaceStage.scheduled
-                            practice.scheduledEnd = singleRaceStage.scheduledEnd
-                            //practice.type = singleRaceStage.type
-                            practiceList.add(practice)
+                            Practice().apply {
+                                status = singleRaceStage.stageSummary?.status
+                                result = competitorsDtoToCompetitors(singleRaceStage.stageSummary?.competitors) // TreeSet(singleRaceStage.stageSummary?.competitors?.mapNotNull { it.toCompetitorEventSummary() })
+                                id = singleRaceStage.id
+                                description = singleRaceStage.description
+                                scheduled = singleRaceStage.scheduled
+                                scheduledEnd = singleRaceStage.scheduledEnd
+                                stageName = singleRaceStage.getStageName(true)
+                            }.also {
+                                practiceList.add(it)
+                            }
                         }
                         "race" -> {
-                            race.id = singleRaceStage.id
-                            race.description = singleRaceStage.description
-                            race.scheduled = singleRaceStage.scheduled
-                            race.scheduledEnd = singleRaceStage.scheduledEnd
-                            race.status = singleRaceStage.stageSummary?.status
-                            race.result = singleRaceStage.stageSummary?.competitors
-                            //race.type = singleRaceStage.type
+                            race.apply {
+                                id = singleRaceStage.id
+                                description = singleRaceStage.description
+                                scheduled = singleRaceStage.scheduled
+                                scheduledEnd = singleRaceStage.scheduledEnd
+                                status = singleRaceStage.stageSummary?.status
+                                result = competitorsDtoToCompetitors(singleRaceStage.stageSummary?.competitors) // TreeSet(singleRaceStage.stageSummary?.competitors?.mapNotNull { it.toCompetitorEventSummary() })
+                                stageName = singleRaceStage.getStageName(true)
+                            }
                         }
                         "qualifying" -> {
                             val qualifyList = TreeSet<QualificationStage>() // array if all the stages of qualification
@@ -68,42 +82,50 @@ fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend> {
                                 // this is a qualification stage, usually Q1 to Q4
                                 for(singleQualifyingStage in qualificationStages) {
                                     if (singleQualifyingStage.type == "qualifying_part") {
-                                        val stage = QualificationStage()
-                                        stage.status = singleQualifyingStage.stageSummary?.status
-                                        stage.result = removeUnqualified(singleQualifyingStage.stageSummary?.competitors)
-                                        stage.id = singleQualifyingStage.id
-                                        stage.description = singleQualifyingStage.description
-                                        stage.scheduled = singleQualifyingStage.scheduled
-                                        stage.scheduledEnd = singleQualifyingStage.scheduledEnd
-                                        //stage.type = singleQualifyingStage.type
-                                        qualifyList.add(stage)
+                                        QualificationStage().apply {
+                                            status = singleQualifyingStage.stageSummary?.status
+                                            result = removeUnqualified(singleQualifyingStage.stageSummary?.competitors)
+                                            id = singleQualifyingStage.id
+                                            description = singleQualifyingStage.description
+                                            scheduled = singleQualifyingStage.scheduled
+                                            scheduledEnd = singleQualifyingStage.scheduledEnd
+                                            stageName = singleQualifyingStage.getStageName(true)
+                                        }.also {
+                                            qualifyList.add(it)
+                                        }
                                     }
                                 }
                             }
 
-                            qualification.id = singleRaceStage.id
-                            qualification.description = singleRaceStage.description
-                            qualification.scheduled = singleRaceStage.scheduled
-                            qualification.scheduledEnd = singleRaceStage.scheduledEnd
-                            qualification.qualificationStages = qualifyList
-                            //qualification.type = singleRaceStage.type
-                            qualification.status = singleRaceStage.stageSummary?.status
+                            qualification.apply {
+                                id = singleRaceStage.id
+                                description = singleRaceStage.description
+                                scheduled = singleRaceStage.scheduled
+                                scheduledEnd = singleRaceStage.scheduledEnd
+                                qualificationStages = qualifyList
+                                status = singleRaceStage.stageSummary?.status
+                                stageName = singleRaceStage.getStageName(true)
+                            }
                         }
                     }
                 }
             }
-            val raceWeekend = RaceWeekend()
-            raceWeekend.status = rc.status
-            raceWeekend.venue = rc.venue
-            raceWeekend.race = race
-            raceWeekend.qualification = qualification
-            raceWeekend.practice = practiceList
-            raceWeekend.id = rc.id
-            raceWeekend.description = rc.description
-            raceWeekend.scheduled = rc.scheduled
-            raceWeekend.scheduledEnd = rc.scheduledEnd
-            raceWeekend.type = rc.type
-            allSeasonRaces.add(raceWeekend)
+
+            RaceWeekend().apply {
+                status = rc.status
+                venue = rc.venue
+                this.race = race
+                this.qualification = qualification
+                practice = practiceList
+                id = rc.id
+                description = rc.description
+                scheduled = rc.scheduled
+                scheduledEnd = rc.scheduledEnd
+                type = rc.type
+                stageName = rc.getStageName(true)
+            }.also {
+                allSeasonRaces.add(it)
+            }
         }
     }
     return allSeasonRaces

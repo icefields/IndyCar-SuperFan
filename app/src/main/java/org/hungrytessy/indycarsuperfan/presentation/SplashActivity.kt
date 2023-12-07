@@ -3,6 +3,7 @@ package org.hungrytessy.indycarsuperfan.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +21,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.dataReady.observe(this) { goToMain() }
+        viewModel.dataReady.observe(this) {
+            Log.d("aaaa","ready $it")
+            goToMain()
+        }
 
         // this version only supports night mode
         if (FORCE_NIGHT_MODE) {

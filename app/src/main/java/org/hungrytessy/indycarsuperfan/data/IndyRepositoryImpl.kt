@@ -17,12 +17,13 @@ import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
 import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
+import org.hungrytessy.indycarsuperfan.data.remote.dto.toCompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
@@ -50,19 +51,15 @@ class IndyRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 val driversResult = async { api.getDrivers() }
-                val seasonsResult = async { api.getSeasons() }
+                //val seasonsResult = async { api.getSeasons() }
                 val venuesResult = async { api.getVenues() }
 
                 driversResult.await().drivers.let {
                     drivers.putAll(it)
                     IndyDataStore.drivers.putAll(it)
-                }
 
-                ensureActive()
-
-                seasonsResult.await().let {
-                    seasons.addAll(it.stages)
-
+                    val seasonsResult = api.getSeasons()
+                    seasons.addAll(seasonsResult.stages)
                     seasonResults = allSeasonsRacesFactory(seasons)
                     for (key in seasonResults.keys) {
                         val weekendsTree = seasonResults[key] ?: TreeSet()
@@ -71,8 +68,21 @@ class IndyRepositoryImpl @Inject constructor(
                         }
                     }
                 }
-
                 ensureActive()
+
+//                seasonsResult.await().let {
+//                    seasons.addAll(it.stages)
+//
+//                    seasonResults = allSeasonsRacesFactory(seasons)
+//                    for (key in seasonResults.keys) {
+//                        val weekendsTree = seasonResults[key] ?: TreeSet()
+//                        for (weekend in weekendsTree) {
+//                            raceWeekends[weekend.id] = weekend
+//                        }
+//                    }
+//                }
+//
+//                ensureActive()
 
                 venuesResult.await().let {
                     venues.putAll(it.venues)
@@ -151,7 +161,7 @@ class IndyRepositoryImpl @Inject constructor(
         } else {
             getPreviousSeason()
         }
-        return ArrayList<CompetitorEventSummary>(season.seasonSummary?.competitors!!)
+        return ArrayList<CompetitorEventSummary>(season.seasonSummary?.competitors!!.map { it.toCompetitorEventSummary() })
     }
 
     /**
@@ -174,7 +184,7 @@ class IndyRepositoryImpl @Inject constructor(
         season.seasonSummary?.competitors?.let { competitors ->
             for(competitor in competitors) {
                 if(competitor.id == driverId) {
-                    result = competitor
+                    result = competitor.toCompetitorEventSummary()
                 }
             }
         }
@@ -195,7 +205,7 @@ class IndyRepositoryImpl @Inject constructor(
                 for(competitor in competitors) {
                     if(competitor.id == driverId) {
                         try {
-                            map[season] = competitor
+                            map[season] = competitor.toCompetitorEventSummary()
                         } catch (ex: Exception){
                             Log.e("eeee", "${ex.localizedMessage} $competitor ")
                         }
@@ -277,7 +287,7 @@ class IndyRepositoryImpl @Inject constructor(
             seasonResults[season]?.let { races ->
                 for(race in races) {
                     if(race.venue?.id == venue.id) {
-                        race.race?.result?.first()?.getDriver()?.let { driver ->
+                        race.race?.result?.first()?.driver?.let { driver ->
                             winners["${season.description?.replace("Indycar", "")?.trim()}"] = driver
                         }
                     }

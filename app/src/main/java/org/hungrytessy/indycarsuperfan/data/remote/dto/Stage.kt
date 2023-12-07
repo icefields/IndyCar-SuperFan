@@ -15,4 +15,4 @@ data class Stage (
     @SerializedName("stages") val stages: TreeSet<Stage>?,
 
     var stageSummary: EventSummaryDetail?
-): BaseStage()
+): BaseStageDto()

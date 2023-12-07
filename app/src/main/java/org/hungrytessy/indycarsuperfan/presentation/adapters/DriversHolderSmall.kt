@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.common.getAssetUrlBigNumber
 import org.hungrytessy.indycarsuperfan.common.getFlagDrawable
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 
 open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val driverImage : ImageView = itemView.findViewById(R.id.driverImg)
@@ -20,18 +21,18 @@ open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView)
     private val countryImg : ImageView = itemView.findViewById(R.id.countryImg)
 
     open fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener) {
-        val pathUri = getAssetUrlBigNumber(currentDriver.result?.carNumber ?: -1, currentDriver.getDriver())
+        val pathUri = getAssetUrlBigNumber(currentDriver.result?.carNumber ?: -1, currentDriver.driver)
         Glide.with(driverImage)
             .asBitmap()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .load(Uri.parse(pathUri))
             .into(driverImage)
 
-        currentDriver.getDriver()?.getFlagDrawable()?.let { countryImg.setImageResource(it) }
-        driverNameText.text = currentDriver.getDriver()?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
+        currentDriver.driver?.getFlagDrawable()?.let { countryImg.setImageResource(it) }
+        driverNameText.text = currentDriver.driver?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         pointsText.text = "${currentDriver.result?.points}"
 
-        itemView.setOnClickListener { listener.onDriverClick(currentDriver.getDriver()) }
+        itemView.setOnClickListener { listener.onDriverClick(currentDriver.driver) }
     }
 }

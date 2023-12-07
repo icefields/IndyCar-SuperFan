@@ -51,7 +51,7 @@ class SingleRaceResultsFragment : IndyFragment() {
             TabLayoutMediator(binding.raceResultsTabLayout, binding.raceResultsViewpager) { tab, position ->
                 tab.text = when(position) {
                     0 -> raceWeekend.race?.description ?: "ERROR"
-                    else -> ArrayList(raceWeekend.qualification?.qualificationStages ?: TreeSet()).reversed()[position-1].getStageName(true)
+                    else -> ArrayList(raceWeekend.qualification?.qualificationStages ?: TreeSet()).reversed()[position-1].stageName
                 }
             }.attach()
         }

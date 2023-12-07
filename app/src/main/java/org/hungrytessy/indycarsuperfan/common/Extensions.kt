@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -20,10 +21,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Driver
+import org.hungrytessy.indycarsuperfan.domain.model.BaseStage
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import java.io.IOException
+import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -35,11 +37,33 @@ val AppCompatActivity.navController: NavController? get() {
     return navHostFragment?.navController
 }
 
-fun Context.readStringAsset(fileName : String) : String {
-    return assets.open(fileName).bufferedReader().use { it.readText()}
+// -------- Duration (Compatibility) --------
+
+fun Duration.toDaysPartCompat(): Long = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    toDaysPart()
+} else {
+    seconds / 86400
 }
 
-fun Context.isDarkModeOn() = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+fun Duration.toHoursPartCompat(): Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    toHoursPart()
+} else {
+    (toHours() % 24).toInt()
+}
+
+fun Duration.toMinutesPartCompat(): Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    toMinutesPart()
+} else {
+    (toMinutes() % 60).toInt()
+}
+
+fun Duration.toSecondsPartCompat(): Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    toSecondsPart()
+} else {
+    (seconds % 60).toInt()
+}
+
+// -------- END Duration (Compatibility) --------
 
 fun ImageView.loadDriverImage(driver: Driver?) {
     Glide.with(this)
@@ -61,8 +85,15 @@ fun String.isoZonedDateToLocalDateTime(): LocalDateTime {
     return LocalDateTime.parse(this, DateTimeFormatter.ISO_ZONED_DATE_TIME)
 }
 
-fun rssDateStringToLocalDateTime(date: String): LocalDateTime =
-    LocalDateTime.parse(date, DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss '+0000'"))
+fun Int.addZeroToSingleDigit(): String = if (this<10) "0$this" else this.toString()
+
+// -------- Context --------
+
+fun Context.readStringAsset(fileName : String) : String {
+    return assets.open(fileName).bufferedReader().use { it.readText()}
+}
+
+fun Context.isDarkModeOn() = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 
 @Throws(IOException::class)
 fun Context.getBitmapFromAssets(fileName: String, type: AssetImageType): Bitmap? {
@@ -100,7 +131,7 @@ fun Context.getBitmapFromAssetsBigNumber(fileName: String): Bitmap {
     return bmp
 }
 
-fun Int.addZeroToSingleDigit(): String = if (this<10) "0$this" else this.toString()
+// -------- END Context --------
 
 /**
  * use with glide
@@ -119,10 +150,6 @@ fun Driver.getAssetUrlHeadshot(): String {
     val name = (competitor?.name ?: "").split(", ")[1].lowercase()
     val lastName = (competitor?.name ?: "").split(", ")[0].lowercase().replace(" ", "_")
     return "file:///android_asset/images/headshots/img_${name[0]}_${lastName}.png"
-}
-
-fun replacePlaceholder(type: AssetImageType, name: String): String {
-    return type.type.replace(PLACEHOLDER, name)
 }
 
 enum class AssetImageType(val type: String) {
@@ -192,3 +219,8 @@ fun RssItem.toIndyRssItem() = IndyRssItem(
     sourceUrl = sourceUrl,
     categories = categories
 )
+
+fun rssDateStringToLocalDateTime(date: String): LocalDateTime =
+    LocalDateTime.parse(date, DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss '+0000'"))
+
+private fun replacePlaceholder(type: AssetImageType, name: String): String = type.type.replace(PLACEHOLDER, name)

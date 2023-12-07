@@ -1,5 +1,6 @@
 package org.hungrytessy.indycarsuperfan.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +23,7 @@ class SplashViewModel @Inject constructor(
             when (indyRepository.generate()) {
                 // TODO: handle error and loading
                 is Resource.Success -> _dataReady.value = true
-                is Resource.Error -> Unit
+                is Resource.Error -> _dataReady.value = false
                 is Resource.Loading -> Unit
             }
         }

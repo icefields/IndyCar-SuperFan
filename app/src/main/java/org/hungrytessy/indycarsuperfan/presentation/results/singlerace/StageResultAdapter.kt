@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Race
 import org.hungrytessy.indycarsuperfan.domain.model.SingleRaceStage
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
@@ -56,7 +57,7 @@ abstract class StageResultHolder(itemView: View): RecyclerView.ViewHolder(itemVi
 class StageResultHolderQualify(itemView: View): StageResultHolder(itemView) {
     override fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener, position: Int) {
         super.bind(currentDriver, listener, position)
-        driverNameText.text = currentDriver.getDriver()?.competitor?.name
+        driverNameText.text = currentDriver.driver?.competitor?.name
         positionText.text = "${currentDriver.result?.position}"
         pointsText.visibility = View.GONE
         driverAvgSpeed.text = "${currentDriver.result?.bestSpeed}"
@@ -64,20 +65,20 @@ class StageResultHolderQualify(itemView: View): StageResultHolder(itemView) {
         driverTime.text = (if(timeStr.length > 10) timeStr.substring(0, 10) else timeStr)
         driverLaps.text = "${currentDriver.result?.laps}"
 
-        itemView.setOnClickListener { listener.onDriverClick(currentDriver.getDriver()) }
+        itemView.setOnClickListener { listener.onDriverClick(currentDriver.driver) }
     }
 }
 
 class StageResultHolderRace(itemView: View): StageResultHolder(itemView) {
     override fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener, position: Int) {
         super.bind(currentDriver, listener, position)
-        driverNameText.text = currentDriver.getDriver()?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
+        driverNameText.text = currentDriver.driver?.competitor?.name ?: currentDriver.id.replace("sr:competitor:","")
         positionText.text = "${currentDriver.result?.position}"
         driverAvgSpeed.text = "${currentDriver.result?.avgSpeed}"
         pointsText.text = "${currentDriver.result?.points}"
         driverLaps.text = "${currentDriver.result?.laps}"
         val timeStr = currentDriver.result?.time ?: ""
         driverTime.text = (if(timeStr.length > 10) timeStr.substring(0, 10) else timeStr).uppercase()
-        itemView.setOnClickListener { listener.onDriverClick(currentDriver.getDriver()) }
+        itemView.setOnClickListener { listener.onDriverClick(currentDriver.driver) }
     }
 }

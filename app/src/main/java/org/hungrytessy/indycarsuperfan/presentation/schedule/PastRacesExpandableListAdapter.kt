@@ -9,9 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummary
+import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.common.themeColor
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.presentation.adapters.DriversHolderSmall
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnRaceClickListener

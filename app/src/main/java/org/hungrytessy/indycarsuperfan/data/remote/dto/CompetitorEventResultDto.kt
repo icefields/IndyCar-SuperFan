@@ -2,7 +2,7 @@ package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class CompetitorEventResult (
+data class CompetitorEventResultDto (
     @SerializedName("best_speed") val bestSpeed: Double?,
     @SerializedName("laps") val laps: Int?,
     @SerializedName("position") val position: Int?,

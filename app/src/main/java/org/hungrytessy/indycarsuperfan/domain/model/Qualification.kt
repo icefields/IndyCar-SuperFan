@@ -1,6 +1,5 @@
 package org.hungrytessy.indycarsuperfan.domain.model
 
-import org.hungrytessy.indycarsuperfan.data.remote.dto.BaseStage
 import java.util.TreeSet
 
 /**
