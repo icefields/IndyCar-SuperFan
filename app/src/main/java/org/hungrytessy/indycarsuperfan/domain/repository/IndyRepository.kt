@@ -11,7 +11,7 @@ import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 
 interface IndyRepository {
     suspend fun generate(): Resource<Boolean>
-    suspend fun getDrivers(): HashMap<String, Driver>
+    suspend fun getDrivers(): Resource<HashMap<String, Driver>>
     fun getPastWinners(venue: Venue): Map<String, Driver>
     fun getRaceResults(raceId: String): RaceWeekend?
     fun getSingleRace(raceId: String): RaceWeekend?

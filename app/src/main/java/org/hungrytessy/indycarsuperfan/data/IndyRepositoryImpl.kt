@@ -16,8 +16,7 @@ import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
-import org.hungrytessy.indycarsuperfan.data.mapper.allSeasonsRacesFactory
-import org.hungrytessy.indycarsuperfan.data.remote.dto.DriverDto
+import org.hungrytessy.indycarsuperfan.data.mapper.RaceWeekendMapper
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
@@ -53,7 +52,6 @@ class IndyRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 val driversResult = async { api.getDrivers() }
-                //val seasonsResult = async { api.getSeasons() }
                 val venuesResult = async { api.getVenues() }
 
                 driversResult.await().drivers.let { driversMap ->
@@ -62,10 +60,11 @@ class IndyRepositoryImpl @Inject constructor(
                     }
                     // drivers.putAll(driversMap.map { it.value.toDriver() })
                     IndyDataStore.drivers = drivers
-
+                    ensureActive()
                     val seasonsResult = api.getSeasons()
                     seasons.addAll(seasonsResult.stages)
-                    seasonResults = allSeasonsRacesFactory(seasons)
+                    seasonResults = RaceWeekendMapper().invoke(seasons)
+                    ensureActive()
                     for (key in seasonResults.keys) {
                         val weekendsTree = seasonResults[key] ?: TreeSet()
                         for (weekend in weekendsTree) {
@@ -106,7 +105,7 @@ class IndyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDrivers(): HashMap<String, Driver> = drivers
+    override suspend fun getDrivers(): Resource<HashMap<String, Driver>> = Resource.Success(drivers)
 
     override suspend fun fetchNews(): List<IndyRssItem> {
         // TODO abstract the rss parser and inject
