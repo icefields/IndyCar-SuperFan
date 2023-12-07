@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/track_bg"
-    tools:context=".ui.results.ResultsFragment">
+    tools:context=".presentation.results.ResultsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             app:layout_constraintTop_toBottomOf="@+id/raceName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/raceLocation"
+            app:layout_constraintLeft_toRightOf="@+id/raceDate"
             android:layout_marginStart="2dp"
             android:padding="10dp"
             android:scaleType="fitEnd"

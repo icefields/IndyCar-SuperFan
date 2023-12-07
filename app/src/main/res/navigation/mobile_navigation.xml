@@ -43,43 +43,43 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="org.hungrytessy.indycarsuperfan.ui.home.HomeFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_news"
-        android:name="org.hungrytessy.indycarsuperfan.ui.news.NewsFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.news.NewsFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="org.hungrytessy.indycarsuperfan.ui.schedule.ScheduleFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.schedule.ScheduleFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
         android:id="@+id/navigation_results"
-        android:name="org.hungrytessy.indycarsuperfan.ui.results.ResultsFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.results.ResultsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_results" />
 
     <fragment
         android:id="@+id/navigation_standings"
-        android:name="org.hungrytessy.indycarsuperfan.ui.standings.StandingsFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.standings.StandingsFragment"
         android:label="@string/title_standings"
         tools:layout="@layout/fragment_standings" />
 
     <fragment
         android:id="@+id/navigation_drivers"
-        android:name="org.hungrytessy.indycarsuperfan.ui.drivers.DriverListFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.drivers.DriverListFragment"
         android:label="@string/title_drivers"
         tools:layout="@layout/fragment_driver_list" />
 
     <fragment
         android:id="@+id/driver_profile"
-        android:name="org.hungrytessy.indycarsuperfan.ui.driver.DriverFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.driver.DriverFragment"
         tools:layout="@layout/fragment_driver" >
         <argument
             android:name="driver_id"
@@ -89,7 +89,7 @@
 
     <fragment
         android:id="@+id/race_results"
-        android:name="org.hungrytessy.indycarsuperfan.ui.results.singlerace.SingleRaceResultsFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.results.singlerace.SingleRaceResultsFragment"
         tools:layout="@layout/fragment_single_race_results" >
         <argument
             android:name="race_id"
@@ -99,7 +99,7 @@
 
     <fragment
         android:id="@+id/race_schedule"
-        android:name="org.hungrytessy.indycarsuperfan.ui.schedule.singlerace.SingleRaceScheduleFragment"
+        android:name="org.hungrytessy.indycarsuperfan.presentation.schedule.singlerace.SingleRaceScheduleFragment"
         tools:layout="@layout/fragment_single_race_schedule" >
         <argument
             android:name="race_id"

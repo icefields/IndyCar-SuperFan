@@ -29,6 +29,7 @@
             android:id="@+id/driverImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/img_placeholder"
             tools:src="@drawable/img_placeholder"
             android:scaleType="centerCrop"/>
 
@@ -69,7 +70,7 @@
 
         <ImageView
             android:id="@+id/flagImg"
-            android:layout_width="50dp"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             tools:src="@drawable/flag_canada"
             app:layout_constraintRight_toRightOf="parent"
