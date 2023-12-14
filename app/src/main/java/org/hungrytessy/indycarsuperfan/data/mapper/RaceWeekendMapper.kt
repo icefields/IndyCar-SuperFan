@@ -1,7 +1,7 @@
 package org.hungrytessy.indycarsuperfan.data.mapper
 
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.SeasonDto
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toCompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toVenue
@@ -26,8 +26,8 @@ class RaceWeekendMapper constructor() {
         return sanitized
     }
 
-    operator fun invoke(seasons: TreeSet<Season>): Map<Season, TreeSet<RaceWeekend>> {
-        val map = LinkedHashMap<Season, TreeSet<RaceWeekend>>()
+    operator fun invoke(seasons: TreeSet<SeasonDto>): Map<SeasonDto, TreeSet<RaceWeekend>> {
+        val map = LinkedHashMap<SeasonDto, TreeSet<RaceWeekend>>()
         for (season in seasons) {
             map[season] = seasonRacesFactory(season)
         }
@@ -134,7 +134,7 @@ class RaceWeekendMapper constructor() {
         return allSeasonRaces
     }
 
-    fun seasonRacesFactory(season: Season): TreeSet<RaceWeekend>  = season.races?.let { races ->
+    fun seasonRacesFactory(season: SeasonDto): TreeSet<RaceWeekend>  = season.races?.let { races ->
         stagesToRaceWeekends(races)
     } ?:run { TreeSet<RaceWeekend>() }
 }

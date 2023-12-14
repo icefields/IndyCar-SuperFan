@@ -1,11 +1,11 @@
 package org.hungrytessy.indycarsuperfan.domain.repository
 
 import org.hungrytessy.indycarsuperfan.common.Resource
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.model.Season
 import org.hungrytessy.indycarsuperfan.domain.model.Venue
 
 interface IndyRepository {

@@ -17,16 +17,18 @@ import org.hungrytessy.indycarsuperfan.common.isoZonedDateToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.rssDateStringToLocalDateTime
 import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
 import org.hungrytessy.indycarsuperfan.data.mapper.RaceWeekendMapper
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.data.remote.dto.SeasonDto
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toCompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toDriver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.toSeason
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toVenue
 import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.model.Season
 import org.hungrytessy.indycarsuperfan.domain.model.Venue
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import retrofit2.HttpException
@@ -40,11 +42,11 @@ import kotlin.coroutines.cancellation.CancellationException
 class IndyRepositoryImpl @Inject constructor(
     private val api: MainNetwork
 ) :  IndyRepository {
-    private val seasons: TreeSet<Season> = TreeSet()
+    private val seasons: TreeSet<SeasonDto> = TreeSet()
     private val drivers: HashMap<String, Driver> = HashMap()
     private val venues: HashMap<String, Venue> = HashMap()
     private val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
-    private var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
+    private var seasonResults: Map<SeasonDto, TreeSet<RaceWeekend>> = LinkedHashMap()
     private var mapper: RaceWeekendMapper = RaceWeekendMapper()
     private var dispatcher = Dispatchers.Main
 
@@ -151,7 +153,7 @@ class IndyRepositoryImpl @Inject constructor(
 
     override suspend fun getCurrentStanding(): List<CompetitorEventSummary> = withContext(dispatcher) {
         // if season not started yet get previous season
-        val season: Season = if (isSeasonStarted()) {
+        val season: SeasonDto = if (isSeasonStarted()) {
             getLatestSeason()
         } else {
             getPreviousSeason()
@@ -170,7 +172,7 @@ class IndyRepositoryImpl @Inject constructor(
         var result: CompetitorEventSummary? = null
         val seasonsList = ArrayList(seasons)
         // if season not started yet get previous season
-        val season: Season = if (isSeasonStarted()) {
+        val season: SeasonDto = if (isSeasonStarted()) {
             seasons.last()
         } else {
             seasonsList[seasonsList.size - 2]
@@ -189,7 +191,7 @@ class IndyRepositoryImpl @Inject constructor(
 
     override suspend fun getResultsDriverAllSeasons(driverId: String): Map<Season, CompetitorEventSummary> = withContext(dispatcher) {
         val map = LinkedHashMap<Season, CompetitorEventSummary>()
-        val seasonsCopy = TreeSet<Season>()
+        val seasonsCopy = TreeSet<SeasonDto>()
         seasonsCopy.addAll(seasons)
         if (!isSeasonStarted()) {
             seasonsCopy.remove(seasons.last())
@@ -200,7 +202,8 @@ class IndyRepositoryImpl @Inject constructor(
                 for(competitor in competitors) {
                     if(competitor.id == driverId) {
                         try {
-                            map[season] = competitor.toCompetitorEventSummary()
+                            val season1 = season.toSeason()
+                            map[season1] = competitor.toCompetitorEventSummary()
                         } catch (ex: Exception){
                             Log.e("eeee", "${ex.localizedMessage} $competitor ")
                         }
@@ -281,12 +284,12 @@ class IndyRepositoryImpl @Inject constructor(
         ArrayList(wkds).reversed()
     }
 
-    private suspend fun getPreviousSeason(): Season = withContext(dispatcher)  {
+    private suspend fun getPreviousSeason(): SeasonDto = withContext(dispatcher)  {
         val seasonsList = ArrayList(seasons)
         seasonsList[seasonsList.size - 2]
     }
 
-    private suspend fun getLatestSeason(): Season = withContext(dispatcher) { seasons.last() }
+    private suspend fun getLatestSeason(): SeasonDto = withContext(dispatcher) { seasons.last() }
 
     override suspend fun getSingleRace(raceId: String): RaceWeekend?  = withContext(dispatcher) {
         raceWeekends[raceId]
