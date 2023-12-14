@@ -1,6 +1,5 @@
 package org.hungrytessy.indycarsuperfan.domain.model
 
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import java.util.TreeSet
 
 class RaceWeekend(): BaseStage() {

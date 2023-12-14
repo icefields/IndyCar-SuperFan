@@ -19,14 +19,15 @@ import org.hungrytessy.indycarsuperfan.common.toIndyRssItem
 import org.hungrytessy.indycarsuperfan.data.mapper.RaceWeekendMapper
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toCompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.data.remote.dto.toDriver
+import org.hungrytessy.indycarsuperfan.data.remote.dto.toVenue
 import org.hungrytessy.indycarsuperfan.data.remote.network.MainNetwork
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
+import org.hungrytessy.indycarsuperfan.domain.model.Venue
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import retrofit2.HttpException
 import java.time.LocalDateTime
@@ -44,6 +45,8 @@ class IndyRepositoryImpl @Inject constructor(
     private val venues: HashMap<String, Venue> = HashMap()
     private val raceWeekends: HashMap<String, RaceWeekend> = HashMap()
     private var seasonResults: Map<Season, TreeSet<RaceWeekend>> = LinkedHashMap()
+    private var mapper: RaceWeekendMapper = RaceWeekendMapper()
+    private var dispatcher = Dispatchers.Main
 
     /**
      * call this on splash
@@ -63,7 +66,7 @@ class IndyRepositoryImpl @Inject constructor(
                     ensureActive()
                     val seasonsResult = api.getSeasons()
                     seasons.addAll(seasonsResult.stages)
-                    seasonResults = RaceWeekendMapper().invoke(seasons)
+                    seasonResults = mapper(seasons)
                     ensureActive()
                     for (key in seasonResults.keys) {
                         val weekendsTree = seasonResults[key] ?: TreeSet()
@@ -72,24 +75,13 @@ class IndyRepositoryImpl @Inject constructor(
                         }
                     }
                 }
+
                 ensureActive()
 
-//                seasonsResult.await().let {
-//                    seasons.addAll(it.stages)
-//
-//                    seasonResults = allSeasonsRacesFactory(seasons)
-//                    for (key in seasonResults.keys) {
-//                        val weekendsTree = seasonResults[key] ?: TreeSet()
-//                        for (weekend in weekendsTree) {
-//                            raceWeekends[weekend.id] = weekend
-//                        }
-//                    }
-//                }
-//
-//                ensureActive()
-
-                venuesResult.await().let {
-                    venues.putAll(it.venues)
+                venuesResult.await().venues.let {
+                    for ((key, value) in it) {
+                        venues[key] = value.toVenue()
+                    }
                 }
 
                 Resource.Success(true)
@@ -105,9 +97,9 @@ class IndyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDrivers(): Resource<HashMap<String, Driver>> = Resource.Success(drivers)
+    override suspend fun getDrivers(): Resource<HashMap<String, Driver>> = withContext(dispatcher) { Resource.Success(drivers) }
 
-    override suspend fun fetchNews(): List<IndyRssItem> {
+    override suspend fun fetchNews(): List<IndyRssItem> = withContext(dispatcher) {
         // TODO abstract the rss parser and inject
         val rssParser = RssParserBuilder(callFactory = OkHttpClient(), charset = Charsets.UTF_8,).build()
         val rssMotorsports: RssChannel = rssParser.getRssChannel(RSS_MOTORSPORT)
@@ -145,36 +137,36 @@ class IndyRepositoryImpl @Inject constructor(
         }
         allRssTree.addAll(rssMotorsports.items)
         allRssTree.addAll(rssYoutube.items)
-        return ArrayList(allRssTree).map { it.toIndyRssItem() }
+        ArrayList(allRssTree).map { it.toIndyRssItem() }
     }
 
-    override fun getNextRace(): Stage? {
+    override suspend fun getNextRace(): RaceWeekend? {
         for (race in seasons.last().races!!) {
             if ((race.stageSummary?.stages?.last()?.status) == "Not started") {
-                return race
+                return mapper.stagesToRaceWeekends(setOf(race)).first()
             }
         }
-        return seasons.first().races!!.first()
+        return mapper.stagesToRaceWeekends(setOf(seasons.first().races!!.first())).first()
     }
 
-    override fun getCurrentStanding(): List<CompetitorEventSummary> {
+    override suspend fun getCurrentStanding(): List<CompetitorEventSummary> = withContext(dispatcher) {
         // if season not started yet get previous season
         val season: Season = if (isSeasonStarted()) {
             getLatestSeason()
         } else {
             getPreviousSeason()
         }
-        return ArrayList<CompetitorEventSummary>(season.seasonSummary?.competitors!!.map { it.toCompetitorEventSummary() })
+        ArrayList<CompetitorEventSummary>(season.seasonSummary?.competitors!!.map { it.toCompetitorEventSummary() })
     }
 
     /**
      * if the new season has no results means it's data for the upcoming season
      */
-    override fun isSeasonStarted(): Boolean {
-        return getLatestSeason().seasonSummary?.competitors != null
+    override suspend fun isSeasonStarted(): Boolean = withContext(dispatcher) {
+        getLatestSeason().seasonSummary?.competitors != null
     }
 
-    override fun getResultsDriverCurrentSeason(driverId: String): CompetitorEventSummary? {
+    override suspend fun getResultsDriverCurrentSeason(driverId: String): CompetitorEventSummary? = withContext(dispatcher) {
         var result: CompetitorEventSummary? = null
         val seasonsList = ArrayList(seasons)
         // if season not started yet get previous season
@@ -192,10 +184,10 @@ class IndyRepositoryImpl @Inject constructor(
             }
         }
 
-        return result
+        result
     }
 
-    override fun getResultsDriverAllSeasons(driverId: String): Map<Season, CompetitorEventSummary> {
+    override suspend fun getResultsDriverAllSeasons(driverId: String): Map<Season, CompetitorEventSummary> = withContext(dispatcher) {
         val map = LinkedHashMap<Season, CompetitorEventSummary>()
         val seasonsCopy = TreeSet<Season>()
         seasonsCopy.addAll(seasons)
@@ -217,11 +209,11 @@ class IndyRepositoryImpl @Inject constructor(
                 }
             }
         }
-        return map
+        map
     }
 
-    override fun getUpcomingRaces(): List<Stage> {
-        val list: ArrayList<Stage> = ArrayList()
+    override suspend fun getUpcomingRaces(): List<RaceWeekend> = withContext(dispatcher) {
+        val list: LinkedHashSet<Stage> = LinkedHashSet()
         getLatestSeason().races?.let { races ->
             if (isSeasonStarted()) {
                 for (race in races) {
@@ -233,33 +225,50 @@ class IndyRepositoryImpl @Inject constructor(
                 list.addAll(races)
             }
         }
-        return list
+        mapper.stagesToRaceWeekends(getUpcomingStages()).toList()
     }
 
-    private fun getAllRaces(): ArrayList<Stage> {
+    private suspend fun getUpcomingStages(): Set<Stage> = withContext(dispatcher) {
+        val list: LinkedHashSet<Stage> = LinkedHashSet()
+        getLatestSeason().races?.let { races ->
+            if (isSeasonStarted()) {
+                for (race in races) {
+                    if(!race.isStageStarted()) {
+                        list.add(race)
+                    }
+                }
+            } else {
+                list.addAll(races)
+            }
+        }
+        list
+    }
+
+    private suspend fun getAllRaces(): ArrayList<Stage> = withContext(dispatcher) {
         val list: ArrayList<Stage> = ArrayList()
         for (season in seasons.reversed()) {
             season.races?.let { list.addAll(it.reversed()) }
         }
-        return list
+        list
     }
 
-    private fun getPastRaces(): List<Stage> {
+    private suspend fun getPastRaces(): List<RaceWeekend> = withContext(dispatcher) {
         val list = ArrayList<Stage>()
         list.addAll(getAllRaces())
-        list.removeAll(LinkedHashSet(getUpcomingRaces()))
-        return list
+        //mapper.stagesToRaceWeekends(
+        list.removeAll(getUpcomingStages().toList())
+        mapper.stagesToRaceWeekends(list.toSet()).toList().reversed()
     }
 
-    override fun getPastRaceWeekends(): List<RaceWeekend> {
+    override suspend fun getPastRaceWeekends(): List<RaceWeekend> = withContext(dispatcher) {
         val list = ArrayList<RaceWeekend>()
         for (stage in getPastRaces()) {
             raceWeekends[stage.id]?.let { list.add(it) }
         }
-        return list
+        list
     }
 
-    override fun getCurrentSeasonFinishedRaces(): List<Stage> {
+    override suspend fun getCurrentSeasonFinishedRaces(): List<RaceWeekend> = withContext(dispatcher)  {
         val races: TreeSet<Stage> = TreeSet()
         if (isSeasonStarted()) {
             races.addAll(getLatestSeason().races ?: ArrayList())
@@ -267,24 +276,27 @@ class IndyRepositoryImpl @Inject constructor(
             races.addAll(getPreviousSeason().races ?: ArrayList())
         }
 
-        races.removeAll(LinkedHashSet(getUpcomingRaces()))
-        return ArrayList(races).reversed()
+        val wkds = mapper.stagesToRaceWeekends(races)
+        wkds.removeAll(LinkedHashSet(getUpcomingRaces()))
+        ArrayList(wkds).reversed()
     }
 
-    override fun getPreviousSeason(): Season {
+    private suspend fun getPreviousSeason(): Season = withContext(dispatcher)  {
         val seasonsList = ArrayList(seasons)
-        return seasonsList[seasonsList.size - 2]
+        seasonsList[seasonsList.size - 2]
     }
 
-    override fun getLatestSeason(): Season = seasons.last()
+    private suspend fun getLatestSeason(): Season = withContext(dispatcher) { seasons.last() }
 
-    override fun getSingleRace(raceId: String): RaceWeekend? {
-        return raceWeekends[raceId]
+    override suspend fun getSingleRace(raceId: String): RaceWeekend?  = withContext(dispatcher) {
+        raceWeekends[raceId]
     }
 
-    override fun getRaceResults(raceId: String): RaceWeekend? = raceWeekends[raceId]
+    override suspend fun getRaceResults(raceId: String): RaceWeekend? = withContext(dispatcher) {
+        raceWeekends[raceId]
+    }
 
-    override fun getPastWinners(venue: Venue): Map<String, Driver> {
+    override suspend fun getPastWinners(venue: Venue): Map<String, Driver> = withContext(dispatcher)  {
         val winners = LinkedHashMap<String, Driver>()
         for(season in seasons) {
             seasonResults[season]?.let { races ->
@@ -297,6 +309,6 @@ class IndyRepositoryImpl @Inject constructor(
                 }
             }
         }
-        return winners
+        winners
     }
 }

@@ -11,7 +11,7 @@ data class Stages (
 
 data class Stage (
     @SerializedName("status") val status: String?, // "Closed",
-    @SerializedName("venue") val venue: Venue?,
+    @SerializedName("venue") val venue: VenueDto?,
     @SerializedName("stages") val stages: TreeSet<Stage>?,
 
     var stageSummary: EventSummaryDetail?

@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
+import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 
 class ScheduleAdapter(
-    private val racesList : List<Stage>,
+    private val racesList : List<RaceWeekend>,
     private val clickListener: OnRaceClickListener
 ): RecyclerView.Adapter<ScheduleAdapter.ScheduleRaceHolder>() {
 
@@ -32,7 +33,7 @@ class ScheduleAdapter(
         private val dateText : TextView = itemView.findViewById(R.id.raceDateTxt)
         private val raceLocationText : TextView = itemView.findViewById(R.id.raceLocationTxt)
 
-        fun bind(currentRace: Stage, listener: OnRaceClickListener) {
+        fun bind(currentRace: RaceWeekend, listener: OnRaceClickListener) {
             stageNameText.text = currentRace.description
             dateText.text = currentRace.getScheduledDateFormatted()
             raceLocationText.text = currentRace.venue?.city ?: ""

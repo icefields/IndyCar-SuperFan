@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Venue
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceScheduleBinding
 import org.hungrytessy.indycarsuperfan.common.getTrackDrawable
+import org.hungrytessy.indycarsuperfan.domain.model.Venue
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
 private const val ARG_RACE_ID = "race_id"

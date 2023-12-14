@@ -27,6 +27,6 @@ data class CompetitorEventSummaryDto (
 fun CompetitorEventSummaryDto.toCompetitorEventSummary(): CompetitorEventSummary =
     CompetitorEventSummary(
         id = id,
-        result = result,
+        result = result?.toCompetitorEventResult(),
         driver = getDriver()
     )
