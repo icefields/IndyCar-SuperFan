@@ -1,6 +1,7 @@
 package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventResult
 
 data class CompetitorEventResultDto (
     @SerializedName("best_speed") val bestSpeed: Double?,
@@ -28,3 +29,28 @@ data class CompetitorEventResultDto (
     @SerializedName("top5") val top5: Int?,
     @SerializedName("top10") val top10: Int?,
 )
+
+fun CompetitorEventResultDto.toCompetitorEventResult(): CompetitorEventResult =
+    CompetitorEventResult(
+        bestSpeed = bestSpeed,
+        laps = laps,
+        position = position,
+        status = status,
+        gap = gap,
+        carNumber = carNumber,
+        points = points,
+        speed = speed,
+        fastestLapTime = fastestLapTime,
+        grid = grid,
+        lapsLed = lapsLed,
+        time = time,
+        avgSpeed = avgSpeed,
+        leadingChangesLaps = leadingChangesLaps,
+        victories = victories,
+        races = races,
+        racesWithPoints = racesWithPoints,
+        polePositions = polePositions,
+        podiums = podiums,
+        top5 = top5,
+        top10 = top10
+    )

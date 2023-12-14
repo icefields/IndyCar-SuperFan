@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.hungrytessy.indycarsuperfan.data.remote.dto.Season
+import org.hungrytessy.indycarsuperfan.common.Resource
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
+import org.hungrytessy.indycarsuperfan.domain.model.Season
 import org.hungrytessy.indycarsuperfan.domain.repository.IndyRepository
 import javax.inject.Inject
 
@@ -28,7 +29,20 @@ class DriverViewModel @Inject constructor(
 
     fun initialize(id: String) {
         viewModelScope.launch {
-            _driver.value = repository.getDrivers()[id]
+            when(val driversResponse = repository.getDrivers()) {
+                is Resource.Success -> {
+                    driversResponse.data?.let { drivers ->
+                        _driver.value = drivers[id]
+                    }
+                }
+                is Resource.Error -> {
+                    // TODO: implement error state
+                }
+                is Resource.Loading -> {
+                    // TODO: implement loading
+                }
+            }
+
             _driverResultsAll.value = repository.getResultsDriverAllSeasons(id)
             _driverResultsCurrentSeasons.value = repository.getResultsDriverCurrentSeason(id)
         }

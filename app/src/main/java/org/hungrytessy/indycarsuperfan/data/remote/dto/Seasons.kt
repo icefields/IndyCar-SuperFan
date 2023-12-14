@@ -5,5 +5,5 @@ import java.util.TreeSet
 
 data class Seasons(
     @SerializedName("stages")
-    val stages: TreeSet<Season>
+    val stages: TreeSet<SeasonDto>
 )

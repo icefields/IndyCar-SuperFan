@@ -1,10 +1,8 @@
 package org.hungrytessy.indycarsuperfan.domain.model
 
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventResultDto
-
 data class CompetitorEventSummary (
     val id: String,
-    val result: CompetitorEventResultDto?,
+    val result: CompetitorEventResult?,
     val driver: Driver?
 ): Comparable<CompetitorEventSummary> {
     override fun compareTo(other: CompetitorEventSummary): Int {
