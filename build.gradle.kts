@@ -18,7 +18,7 @@ buildscript {
         set("retrofit2_version", "2.9.0")
         set("coroutines_version", "1.7.3")
         set("lifecycle_version", "2.6.2")
-        set("nav_version", "2.7.5")
+        set("nav_version", "2.7.6")
     }
 }
 
