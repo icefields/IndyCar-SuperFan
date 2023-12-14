@@ -1,5 +1,7 @@
 package org.hungrytessy.indycarsuperfan.domain.model
 
+import android.net.Uri
+
 
 data class Driver(
     val teams: List<Team>,
@@ -19,6 +21,7 @@ data class Driver(
     val salary: String?,
     val debut: String?,
     val firstPoints: String?,
+    val headShotUri: Uri
 ) {
     fun getTeamsString(): String {
         val sb: StringBuilder = java.lang.StringBuilder()

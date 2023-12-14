@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Indycar SuperFan</string>
     <string name="title_home">Home</string>
     <string name="title_news">News</string>
     <string name="title_dashboard">Schedule</string>

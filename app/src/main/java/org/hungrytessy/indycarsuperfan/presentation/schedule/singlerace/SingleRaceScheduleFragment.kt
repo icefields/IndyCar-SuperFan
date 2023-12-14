@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceScheduleBinding
-import org.hungrytessy.indycarsuperfan.common.getTrackDrawable
 import org.hungrytessy.indycarsuperfan.domain.model.Venue
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
@@ -51,7 +50,7 @@ class SingleRaceScheduleFragment : IndyFragment(), OnDriverClickListener {
             binding.weekendScheduleListView.adapter = adapter
 
             binding.venueView.raceDate.text = raceWeekend.race?.getScheduledDateTimeFormatted()
-            binding.venueView.trackImg.setImageResource(raceWeekend.getTrackDrawable())
+            binding.venueView.trackImg.setImageResource(raceWeekend.trackDrawable)
             //binding.trackBigImg.setImageResource(raceWeekend.getTrackDrawable())
         }
 

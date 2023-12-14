@@ -1,5 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data.mapper
 
+import org.hungrytessy.indycarsuperfan.common.trackDrawableFromName
 import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.data.remote.dto.SeasonDto
 import org.hungrytessy.indycarsuperfan.data.remote.dto.Stage
@@ -127,6 +128,7 @@ class RaceWeekendMapper constructor() {
                 scheduledEnd = rc.scheduledEnd
                 type = rc.type
                 stageName = rc.getStageName(true)
+                trackDrawable = trackDrawableFromName()
             }.also {
                 allSeasonRaces.add(it)
             }
