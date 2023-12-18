@@ -7,9 +7,10 @@ plugins {
 }
 
 buildscript {
+    val navVersion = "2.7.6"
+
     dependencies {
-        val nav_version = "2.7.6"
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.48")
     }
 
@@ -18,7 +19,7 @@ buildscript {
         set("retrofit2_version", "2.9.0")
         set("coroutines_version", "1.7.3")
         set("lifecycle_version", "2.6.2")
-        set("nav_version", "2.7.6")
+        set("nav_version", navVersion)
     }
 }
 
