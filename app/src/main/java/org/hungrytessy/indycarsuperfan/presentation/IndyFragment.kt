@@ -1,7 +1,6 @@
 package org.hungrytessy.indycarsuperfan.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -12,7 +11,6 @@ import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import java.lang.ref.WeakReference
 
 abstract class IndyFragment : Fragment(), FragmentLogger by FragmentLoggerImpl() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (requireActivity() is MainActivity) {

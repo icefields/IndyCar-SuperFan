@@ -1,7 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data.remote.dto
 
 import android.net.Uri
-import android.util.Log
 import com.google.gson.annotations.SerializedName
 import com.google.gson.internal.LinkedTreeMap
 import org.hungrytessy.indycarsuperfan.domain.model.Driver

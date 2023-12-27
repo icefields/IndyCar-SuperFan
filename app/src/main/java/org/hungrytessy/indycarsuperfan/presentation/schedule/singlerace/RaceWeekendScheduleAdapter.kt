@@ -10,7 +10,9 @@ import org.hungrytessy.indycarsuperfan.domain.model.BaseStage
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import java.util.TreeSet
 
-class RaceWeekendScheduleAdapter(private val raceWeekend : RaceWeekend): RecyclerView.Adapter<StageScheduleHolder>() {
+class RaceWeekendScheduleAdapter(
+    private val raceWeekend : RaceWeekend
+): RecyclerView.Adapter<StageScheduleHolder>() {
     private val stagesList: List<BaseStage> = ArrayList(TreeSet<BaseStage>().apply {
         addAll(raceWeekend.practice ?: TreeSet())
         raceWeekend.race?.let { add(it) }

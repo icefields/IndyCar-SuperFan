@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import org.hungrytessy.indycarsuperfan.common.themeColor
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
@@ -105,11 +104,13 @@ class PastWinnersSmallHolder(private val itemView: View): DriversHolderSmall(ite
         val timeStr = currentDriver.result?.time ?: ""
         pointsText.text = (if(timeStr.length > 10) timeStr.substring(0, 10) else timeStr)
 
-        positionText.text = when(currentDriver.result?.position) {
-            1 -> "1st"
-            2 -> "2nd"
-            3 -> "3rd"
-            else -> "ERR"
+        itemView.context.apply {
+            positionText.text = when(currentDriver.result?.position) {
+                1 -> getString(R.string.podium_abbr_1st)
+                2 -> getString(R.string.podium_abbr_2nd)
+                3 -> getString(R.string.podium_abbr_3rd)
+                else -> "ERR"
+            }
         }
     }
 }

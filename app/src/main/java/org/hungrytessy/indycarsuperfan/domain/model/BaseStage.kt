@@ -30,7 +30,6 @@ abstract class BaseStage: Comparable<BaseStage> {
     fun getScheduledEnd(): LocalDateTime {
         val offsetDate = OffsetDateTime.of(scheduledEnd?.let { it.isoZonedDateToLocalDateTime() }?: LocalDateTime.now(), ZoneOffset.UTC)
         return offsetDate.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
-        //return scheduledEnd?.let { stringToLocalDateTime(it) }?: LocalDateTime.MIN
     }
 
     fun isStageStarted(): Boolean = getScheduled().isBefore(LocalDateTime.now())

@@ -15,7 +15,6 @@ import org.hungrytessy.indycarsuperfan.common.navController
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityNav {
-
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -9,7 +9,10 @@ import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.presentation.adapters.OnDriverClickListener
 
-class PastWinnersAdapter(private val drivers : Map<String, Driver>, private val onDriverClickListener: OnDriverClickListener): RecyclerView.Adapter<PastWinnerHolder>() {
+class PastWinnersAdapter(
+    private val drivers : Map<String, Driver>,
+    private val onDriverClickListener: OnDriverClickListener
+): RecyclerView.Adapter<PastWinnerHolder>() {
     private val yearsList: List<String> = ArrayList(drivers.keys).reversed()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PastWinnerHolder {

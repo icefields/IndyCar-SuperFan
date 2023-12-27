@@ -1,13 +1,14 @@
 package org.hungrytessy.indycarsuperfan.presentation.schedule.singlerace
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import org.hungrytessy.indycarsuperfan.R
+import org.hungrytessy.indycarsuperfan.common.L
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceScheduleBinding
@@ -56,14 +57,15 @@ class SingleRaceScheduleFragment : IndyFragment(), OnDriverClickListener {
 
         viewModel.venue.observe(viewLifecycleOwner) { venue ->
             setBarText(venue)
-            binding.venueView.raceMiles.text = "${venue.length} m"
+            binding.venueView.raceMiles.text = getString(R.string.x_meters, venue.length)
             binding.venueView.raceLocation.text = venue.city
             binding.venueView.raceName.text = venue.name
         }
 
         viewModel.pastWinners.observe(viewLifecycleOwner) { pastWinners ->
+            // TODO remove debug code
             for (key in pastWinners.keys) {
-                Log.d("LUCIFER", "$key ${pastWinners[key]?.name}")
+                L(key, pastWinners[key]?.name)
             }
             pastWinnersAdapter = PastWinnersAdapter(pastWinners, this)
             binding.weekendSchedulePastWinnersListView.layoutManager = LinearLayoutManager(requireContext())

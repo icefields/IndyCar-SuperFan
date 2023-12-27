@@ -1,6 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data.remote.dto
 
-import android.util.Log
+import org.hungrytessy.indycarsuperfan.common.L
 import org.hungrytessy.indycarsuperfan.domain.model.Season
 import java.util.TreeSet
 
@@ -12,7 +12,7 @@ data class SeasonDto(
 fun SeasonDto.toSeason(): Season {
     val dto = this
     return Season().apply {
-        Log.d("aaaa", "$description")
+        L(description)
         id = dto.id
         description = dto.description
         scheduled = dto.scheduled

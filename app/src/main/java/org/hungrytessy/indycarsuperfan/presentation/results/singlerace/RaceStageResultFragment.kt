@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.domain.model.QualificationStage
 import org.hungrytessy.indycarsuperfan.domain.model.Race
@@ -55,19 +55,19 @@ class RaceStageResultFragment : IndyFragment(), OnDriverClickListener {
             binding.stageResultsListView.adapter = adapter
             binding.stageResultsListView.isNestedScrollingEnabled = false
 
-            binding.driverNameTitle.text = "Driver"
-            binding.driverLapsTitle.text = "Laps"
+            binding.driverNameTitle.text = getString(R.string.race_results_table_title_driver)
+            binding.driverLapsTitle.text = getString(R.string.race_results_table_title_laps)
 
             when(it) {
                 is Race -> {
-                    binding.driverPointsTitle.text = "Pts"
-                    binding.driverTimeTitle.text = "Time"
-                    binding.driverAvgSpeedTitle.text = "AvgSpeed"
+                    binding.driverPointsTitle.text = getString(R.string.race_results_table_title_pts)
+                    binding.driverTimeTitle.text = getString(R.string.race_results_table_title_time)
+                    binding.driverAvgSpeedTitle.text = getString(R.string.race_results_table_title_avgSpeed)
                 }
                 is QualificationStage -> {
                     binding.driverPointsTitle.visibility = View.GONE
-                    binding.driverTimeTitle.text = "Time"
-                    binding.driverAvgSpeedTitle.text = "Speed"
+                    binding.driverTimeTitle.text = getString(R.string.race_results_table_title_time)
+                    binding.driverAvgSpeedTitle.text = getString(R.string.race_results_table_title_speed)
                 }
             }
         }

@@ -9,6 +9,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * not in the constructor:
  * defStyleAttr: Int, defStyleRes: Int
  */
-class IndyBottomNavigationView(context: Context, attrs: AttributeSet, ): BottomNavigationView(context, attrs) {
+class IndyBottomNavigationView(
+    context: Context,
+    attrs: AttributeSet
+): BottomNavigationView(context, attrs) {
     override fun getMaxItemCount(): Int = 6
 }

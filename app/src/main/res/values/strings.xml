@@ -8,5 +8,17 @@
     <string name="title_activity_splash">@string/app_name</string>
     <string name="current_sta">Current Standings</string>
     <string name="view_all">View All  </string>
+    <string name="schedule_tab_upcoming">Upcoming Races</string>
+    <string name="schedule_tab_past">Past Races</string>
+    <string name="podium_abbr_1st">1st</string>
+    <string name="podium_abbr_2nd">2nd</string>
+    <string name="podium_abbr_3rd">3rd</string>
+    <string name="x_meters">%dm</string>
+    <string name="race_results_table_title_driver">Driver</string>
+    <string name="race_results_table_title_laps">Laps</string>
+    <string name="race_results_table_title_pts">Pts</string>
+    <string name="race_results_table_title_time">Time</string>
+    <string name="race_results_table_title_avgSpeed">AvgSpeed</string>
+    <string name="race_results_table_title_speed">Speed</string>
 
 </resources>

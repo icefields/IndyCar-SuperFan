@@ -3,7 +3,7 @@ package org.hungrytessy.indycarsuperfan.domain.model
 import org.hungrytessy.indycarsuperfan.R
 import java.util.TreeSet
 
-class RaceWeekend(): BaseStage() {
+class RaceWeekend: BaseStage() {
     var status: String? = null
     var venue: Venue? = null
     var race: Race? = null

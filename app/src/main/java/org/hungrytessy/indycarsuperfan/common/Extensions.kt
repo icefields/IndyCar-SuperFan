@@ -7,31 +7,18 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Build
-import android.util.Log
-import android.widget.ImageView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.domain.model.BaseStage
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
-import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem
 import java.io.IOException
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
-
-const val PLACEHOLDER = "__placeholder__"
 
 val AppCompatActivity.navController: NavController? get() {
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment?
@@ -136,5 +123,3 @@ fun Driver.getFlagDrawable(): Int = when((nationality ?: "").lowercase()) {
     "switzerland" -> R.drawable.flag_switzerland
     else -> R.drawable.ic_menu_drivers
 }
-
-

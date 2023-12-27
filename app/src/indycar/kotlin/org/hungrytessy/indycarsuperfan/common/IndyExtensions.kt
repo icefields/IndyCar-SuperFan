@@ -5,7 +5,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.prof18.rssparser.model.RssItem
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.domain.model.BaseStage
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
 import org.hungrytessy.indycarsuperfan.domain.model.IndyRssItem

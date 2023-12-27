@@ -10,6 +10,7 @@ import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okio.IOException
+import org.hungrytessy.indycarsuperfan.common.L
 import org.hungrytessy.indycarsuperfan.common.RSS_MOTORSPORT
 import org.hungrytessy.indycarsuperfan.common.RSS_YOUTUBE
 import org.hungrytessy.indycarsuperfan.common.Resource
@@ -99,7 +100,8 @@ class IndyRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getDrivers(): Resource<HashMap<String, Driver>> = withContext(dispatcher) { Resource.Success(drivers) }
+    override suspend fun getDrivers(): Resource<HashMap<String, Driver>> =
+        withContext(dispatcher) { Resource.Success(drivers) }
 
     override suspend fun fetchNews(): List<IndyRssItem> = withContext(dispatcher) {
         // TODO abstract the rss parser and inject
@@ -205,7 +207,7 @@ class IndyRepositoryImpl @Inject constructor(
                             val season1 = season.toSeason()
                             map[season1] = competitor.toCompetitorEventSummary()
                         } catch (ex: Exception){
-                            Log.e("eeee", "${ex.localizedMessage} $competitor ")
+                            L(ex.localizedMessage, competitor)
                         }
 
                     }
@@ -259,7 +261,7 @@ class IndyRepositoryImpl @Inject constructor(
         val list = ArrayList<Stage>()
         list.addAll(getAllRaces())
         //mapper.stagesToRaceWeekends(
-        list.removeAll(getUpcomingStages().toList())
+        list.removeAll(getUpcomingStages().toList().toSet())
         mapper.stagesToRaceWeekends(list.toSet()).toList().reversed()
     }
 
@@ -271,7 +273,7 @@ class IndyRepositoryImpl @Inject constructor(
         list
     }
 
-    override suspend fun getCurrentSeasonFinishedRaces(): List<RaceWeekend> = withContext(dispatcher)  {
+    override suspend fun getCurrentSeasonFinishedRaces(): List<RaceWeekend> = withContext(dispatcher) {
         val races: TreeSet<Stage> = TreeSet()
         if (isSeasonStarted()) {
             races.addAll(getLatestSeason().races ?: ArrayList())
