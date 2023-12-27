@@ -1,5 +1,6 @@
 package org.hungrytessy.indycarsuperfan.data.remote.dto
 
+import android.net.Uri
 import com.google.gson.annotations.SerializedName
 import com.google.gson.internal.LinkedTreeMap
 import org.hungrytessy.indycarsuperfan.domain.model.Driver
@@ -76,6 +77,12 @@ data class InfoDriver (
     @SerializedName("first_points") val firstPoints: String?,
 )
 
+fun DriverDto.getAssetUrlHeadshot(): Uri {
+    val firstName = (competitor?.name ?: "").split(", ")[1].lowercase()
+    val lastName = (competitor?.name ?: "").split(", ")[0].lowercase().replace(" ", "_")
+    return Uri.parse("file:///android_asset/images/headshots/img_${firstName[0]}_${lastName}.png")
+}
+
 fun DriverDto.toDriver(): Driver = Driver(
     teams = getTeamsList().map { it.toTeam() },
     id = competitor?.id ?: "${System.currentTimeMillis()}",
@@ -93,5 +100,6 @@ fun DriverDto.toDriver(): Driver = Driver(
     placeOfBirth = info?.placeOfBirth,
     salary = info?.salary,
     debut = info?.debut,
-    firstPoints = info?.firstPoints
+    firstPoints = info?.firstPoints,
+    headShotUri = getAssetUrlHeadshot()
 )

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import org.hungrytessy.indycarsuperfan.R
 import org.hungrytessy.indycarsuperfan.presentation.IndyFragment
 import org.hungrytessy.indycarsuperfan.presentation.MainActivity
 import org.hungrytessy.indycarsuperfan.databinding.FragmentSingleRaceResultsBinding
-import org.hungrytessy.indycarsuperfan.common.getTrackDrawable
 import org.hungrytessy.indycarsuperfan.domain.model.Venue
 import java.util.TreeSet
 
@@ -45,7 +45,7 @@ class SingleRaceResultsFragment : IndyFragment() {
         viewModel.raceWeekend.observe(viewLifecycleOwner) { raceWeekend ->
             adapter = RaceResultsPagerAdapter(this, raceWeekend)
             binding.venueView.raceDate.text = raceWeekend.race?.getScheduledDateTimeFormatted()
-            binding.venueView.trackImg.setImageResource(raceWeekend.getTrackDrawable())
+            binding.venueView.trackImg.setImageResource(raceWeekend.trackDrawable)
             binding.raceResultsViewpager.adapter = adapter
 
             TabLayoutMediator(binding.raceResultsTabLayout, binding.raceResultsViewpager) { tab, position ->
@@ -58,7 +58,7 @@ class SingleRaceResultsFragment : IndyFragment() {
 
         viewModel.venue.observe(viewLifecycleOwner) { venue ->
             setBarText(venue)
-            binding.venueView.raceMiles.text = "${venue.length} m"
+            binding.venueView.raceMiles.text = getString(R.string.x_meters, venue.length)
             binding.venueView.raceLocation.text = venue.city
             binding.venueView.raceName.text = venue.name
         }

@@ -20,11 +20,10 @@ open class DriversHolderSmall(itemView: View): RecyclerView.ViewHolder(itemView)
     private val countryImg : ImageView = itemView.findViewById(R.id.countryImg)
 
     open fun bind(currentDriver: CompetitorEventSummary, listener: OnDriverClickListener) {
-        val pathUri = getAssetUrlBigNumber(currentDriver.result?.carNumber ?: -1, currentDriver.driver)
         Glide.with(driverImage)
             .asBitmap()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .load(Uri.parse(pathUri))
+            .load(Uri.parse(currentDriver.getAssetUrlBigNumber()))
             .into(driverImage)
 
         currentDriver.driver?.getFlagDrawable()?.let { countryImg.setImageResource(it) }

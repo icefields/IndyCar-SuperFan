@@ -8,7 +8,10 @@ import org.hungrytessy.indycarsuperfan.domain.model.Race
 import org.hungrytessy.indycarsuperfan.domain.model.RaceWeekend
 import java.util.TreeSet
 
-class RaceResultsPagerAdapter(fragment: Fragment, private val raceWeekend: RaceWeekend) : FragmentStateAdapter(fragment) {
+class RaceResultsPagerAdapter(
+    fragment: Fragment,
+    private val raceWeekend: RaceWeekend
+) : FragmentStateAdapter(fragment) {
     private var race: Race? = raceWeekend.race
     private var qualification: Qualification? = raceWeekend.qualification
     private var qualificationStages: List<QualificationStage> = ArrayList(qualification?.qualificationStages ?: TreeSet()).reversed()

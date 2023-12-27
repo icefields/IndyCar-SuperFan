@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.hungrytessy.indycarsuperfan.R
-import org.hungrytessy.indycarsuperfan.data.remote.dto.CompetitorEventSummaryDto
 import org.hungrytessy.indycarsuperfan.domain.model.CompetitorEventSummary
 import org.hungrytessy.indycarsuperfan.domain.model.Race
 import org.hungrytessy.indycarsuperfan.domain.model.SingleRaceStage
@@ -17,7 +16,8 @@ class StageResultAdapter(
     private val singleRaceStage : SingleRaceStage,
     private val clickListener: OnDriverClickListener
 ): RecyclerView.Adapter<StageResultHolder>() {
-    private val driverList: List<CompetitorEventSummary> = ArrayList(singleRaceStage.result ?: TreeSet())
+    private val driverList: List<CompetitorEventSummary> =
+        ArrayList(singleRaceStage.result ?: TreeSet())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StageResultHolder {
         val viewLayout = LayoutInflater.from(parent.context).inflate(R.layout.item_race_result, parent,false)
